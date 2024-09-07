@@ -12,8 +12,8 @@ prod = 'poetry install --no-interaction --without dev && poetry shell'
 install = 'poetry install --no-interaction && poetry shell'
 format = 'poetry run ruff format lintastic'
 lint = 'poetry run ruff check lintastic --fix'
-dev = 'task install && task format && task lint'
-test = 'pytest -v --cov ./lintastic --cov-fail-under 90 --cov-report html'
+dev = 'poetry install --no-interaction && poetry run task format && poetry run task lint'
+test = 'poetry run pytest -v --cov ./lintastic --cov-fail-under 90 --cov-report html'
 
 [tool.ruff]
 line-length = 79
@@ -49,4 +49,5 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-oas = "lintastic.main:cli"
+lin = "lintastic.main:cli"
+lintastic = "lintastic.main:cli"
