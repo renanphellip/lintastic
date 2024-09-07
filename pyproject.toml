@@ -8,6 +8,20 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12"
+typer = "^0.12.5"
+pyyaml = "^6.0.2"
+jsonschema = "^4.23.0"
+jsonpath-ng = "^1.6.1"
+pydantic = "^2.9.0"
+tomli = "^2.0.1"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.2"
+pytest-cov = "^5.0.0"
+pytest-html = "^4.1.1"
+pytest-mock = "^3.14.0"
+ruff = "^0.6.4"
+taskipy = "^1.13.0"
 
 [build-system]
 requires = ["poetry-core"]
