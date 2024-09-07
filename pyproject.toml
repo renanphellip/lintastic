@@ -6,6 +6,27 @@ authors = ["Renan Morais <renan.ps.morais@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 
+[tool.taskipy.tasks]
+config = 'poetry config virtualenvs.in-project true --local && poetry run prod'
+prod = 'poetry install --no-interaction --without dev && poetry shell'
+install = 'poetry install --no-interaction && poetry shell'
+format = 'poetry run ruff format lintastic'
+lint = 'poetry run ruff check lintastic --fix'
+dev = 'task install && task format && task lint'
+test = 'pytest -v --cov ./lintastic --cov-fail-under 90 --cov-report html'
+
+[tool.ruff]
+line-length = 79
+
+[tool.ruff.lint]
+preview = true
+select = ['I', 'F', 'E', 'W', 'PL', 'PT']
+ignore = ['E722']
+
+[tool.ruff.format]
+preview = true
+quote-style = 'single'
+
 [tool.poetry.dependencies]
 python = "^3.12"
 typer = "^0.12.5"
@@ -26,3 +47,6 @@ taskipy = "^1.13.0"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+oas = "lintastic.main:cli"
