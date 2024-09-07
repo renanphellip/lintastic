@@ -1,12 +1,10 @@
-# Lintastic
+# Lintastic <img src="./assets/lintastic-logo.png" alt="Lintastic logo" width="30"/>
 
-The command line interface tool to validate YAML and JSON documents.
-
-<img src="./assets/lintastic-logo.png" alt="Lintastic logo" width="200"/>
+Lintastic is a command line interface tool to validate YAML and JSON documents.
 
 ## Requirements
 
-- [Python 3.12.5 or higher](https://www.python.org/downloads/)
+- [Python 3.12 or higher](https://www.python.org/downloads/)
 - [Poetry 1.8.3 or higher](https://python-poetry.org/docs/#installation)
 
 ## Getting Started
@@ -17,7 +15,7 @@ The command line interface tool to validate YAML and JSON documents.
     git clone https://github.com/renanphellip/lintastic.git
     ```
 
-2. Access the **lintastic** folder:
+2. Access the repository that was cloned locally:
 
     ```shell
     cd lintastic
