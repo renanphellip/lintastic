@@ -8,10 +8,7 @@ def resolve(
     document_path: Annotated[
         str,
         typer.Argument(
-            help=(
-                'Document path. '
-                'Supported extensions: .yml, .yaml'
-            )
+            help=('Document path. ' 'Supported extensions: .yml, .yaml')
         ),
     ],
     output_path: Annotated[

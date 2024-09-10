@@ -1,6 +1,6 @@
 import json
 import pytest
-from lintastic.file.json_file_reader import JsonFileReader
+from lintastic.file_reader.json_file_reader import JsonFileReader
 
 
 @pytest.fixture

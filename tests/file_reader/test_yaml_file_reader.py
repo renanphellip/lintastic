@@ -1,6 +1,6 @@
 import yaml
 import pytest
-from lintastic.file.yaml_file_reader import YamlFileReader
+from lintastic.file_reader.yaml_file_reader import YamlFileReader
 
 
 @pytest.fixture

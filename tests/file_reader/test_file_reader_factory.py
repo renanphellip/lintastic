@@ -1,8 +1,8 @@
 import pytest
-from lintastic.file.file_reader_factory import FileReaderFactory
-from lintastic.file.json_file_reader import JsonFileReader
-from lintastic.file.toml_file_reader import TomlFileReader
-from lintastic.file.yaml_file_reader import YamlFileReader
+from lintastic.file_reader.file_reader_factory import FileReaderFactory
+from lintastic.file_reader.json_file_reader import JsonFileReader
+from lintastic.file_reader.toml_file_reader import TomlFileReader
+from lintastic.file_reader.yaml_file_reader import YamlFileReader
 
 
 def test_get_file_reader_toml():

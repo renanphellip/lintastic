@@ -1,7 +1,7 @@
 import pytest
 from rich.console import Console
 from lintastic.commands.version import version
-from lintastic.file.file_service import FileService
+from lintastic.file_reader.file_reader_service import FileReaderService
 
 
 def test_version_success(mocker):
@@ -15,11 +15,11 @@ def test_version_success(mocker):
         }
     }
 
-    mock_file_service = mocker.Mock(spec=FileService)
-    mock_file_service.read_file.return_value = toml_content
+    mock_file_reader_service = mocker.Mock(spec=FileReaderService)
+    mock_file_reader_service.read_file.return_value = toml_content
     mock_print = mocker.patch('lintastic.commands.version.print')
     
-    mocker.patch('lintastic.commands.version.FileService', return_value=mock_file_service)
+    mocker.patch('lintastic.commands.version.FileReaderService', return_value=mock_file_reader_service)
     assert version() == True
     mock_print.assert_called_with(expected_message)
 
@@ -32,10 +32,10 @@ def test_version_key_error(mocker):
         }
     }
 
-    mock_file_service = mocker.Mock(spec=FileService)
-    mock_file_service.read_file.return_value = toml_content
+    mock_file_reader_service = mocker.Mock(spec=FileReaderService)
+    mock_file_reader_service.read_file.return_value = toml_content
     
-    mocker.patch('lintastic.commands.version.FileService', return_value=mock_file_service)
+    mocker.patch('lintastic.commands.version.FileReaderService', return_value=mock_file_reader_service)
     mock_print = mocker.patch('lintastic.commands.version.print')
     with pytest.raises(SystemExit) as error:
         version()
@@ -54,11 +54,11 @@ def test_version_invalid_format(mocker):
         }
     }
 
-    mock_file_service = mocker.Mock(spec=FileService)
-    mock_file_service.read_file.return_value = toml_content
+    mock_file_reader_service = mocker.Mock(spec=FileReaderService)
+    mock_file_reader_service.read_file.return_value = toml_content
     mock_print = mocker.patch('lintastic.commands.version.print')
     
-    mocker.patch('lintastic.commands.version.FileService', return_value=mock_file_service)
+    mocker.patch('lintastic.commands.version.FileReaderService', return_value=mock_file_reader_service)
     with pytest.raises(SystemExit) as error:
         version()
     assert error.type == SystemExit

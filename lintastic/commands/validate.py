@@ -10,19 +10,13 @@ def validate(
     document_path: Annotated[
         str,
         typer.Argument(
-            help=(
-                'Document path. '
-                'Supported extensions: .yml, .yaml, .json'
-            )
+            help=('Document path. ' 'Supported extensions: .yml, .yaml, .json')
         ),
     ],
     ruleset_path: Annotated[
         str,
         typer.Argument(
-            help=(
-                'Ruleset path. '
-                'Supported extensions: .yml, .yaml, .json'
-            )
+            help=('Ruleset path. ' 'Supported extensions: .yml, .yaml, .json')
         ),
     ],
     results_path: Annotated[

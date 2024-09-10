@@ -1,6 +1,6 @@
 import pytest
 import tomli
-from lintastic.file.toml_file_reader import TomlFileReader
+from lintastic.file_reader.toml_file_reader import TomlFileReader
 
 
 @pytest.fixture
