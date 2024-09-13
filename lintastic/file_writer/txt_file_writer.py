@@ -5,7 +5,7 @@ from lintastic.entities.validator import ValidationResultCollection
 
 
 class TxtFileWriter:
-    def write(output_path: str, data: Any) -> str:
+    def write(self, output_path: str, data: Any) -> str:
         if not isinstance(data, ValidationResultCollection):
             raise TypeError(
                 'Data must be an instance of ValidationResultCollection.'

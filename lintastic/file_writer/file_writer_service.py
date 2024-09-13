@@ -8,7 +8,7 @@ from lintastic.file_writer.file_writer_factory import FileWriterFactory
 
 
 class FileWriterService:
-    def __init__(self, console=Console()):
+    def __init__(self, console = Console(highlight=False)):
         self.console = console
 
     def write_file(self, output_path: str, data: Any, verbose=False) -> str:
@@ -17,11 +17,7 @@ class FileWriterService:
             absolute_output_path = os.path.abspath(output_path.strip())
             if verbose:
                 self.console.print(
-                    'The absolute output path is: '
-                    f'[blue]{absolute_output_path}[/blue]'
-                )
-                self.console.print(
-                    f'Creating "[blue]{absolute_output_path}[/blue]"...'
+                    f'Creating: [blue]{absolute_output_path}[/blue]'
                 )
             file_writer = FileWriterFactory.get_file_writer(
                 absolute_output_path
@@ -30,7 +26,7 @@ class FileWriterService:
             return absolute_output_path
         except Exception as error:
             self.console.print(
-                f'[red]Failed to write the file "{absolute_output_path}": '
+                f'[red]Failed to create: {absolute_output_path}\n'
                 f'{error}[/red]'
             )
             sys.exit(1)
@@ -42,7 +38,6 @@ class FileWriterService:
         if not os.path.exists(output_dir):
             if verbose:
                 self.console.print(
-                    f'The path "[blue]{output_dir}[/blue]" not exists. '
-                    'Creating...'
+                    f'Creating directory: [blue]{output_dir}[/blue]'
                 )
             os.makedirs(output_dir)

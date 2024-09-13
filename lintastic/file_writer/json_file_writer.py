@@ -7,7 +7,7 @@ from lintastic.entities.validator import ValidationResultCollection
 
 
 class JsonFileWriter:
-    def write(output_path: str, data: Any) -> str:
+    def write(self, output_path: str, data: Any) -> str:
         absolute_output_path = os.path.abspath(output_path.strip())
         with open(absolute_output_path, 'w', encoding='utf-8') as file:
             if isinstance(data, ValidationResultCollection):
