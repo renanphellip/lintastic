@@ -8,7 +8,7 @@ from lintastic.file_writer.file_writer_factory import FileWriterFactory
 
 
 class FileWriterService:
-    def __init__(self, console = Console(highlight=False)):
+    def __init__(self, console=Console(highlight=False)):
         self.console = console
 
     def write_file(self, output_path: str, data: Any, verbose=False) -> str:
