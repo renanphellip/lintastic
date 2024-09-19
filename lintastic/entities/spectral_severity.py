@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class Severity(str, Enum):
+class SpectralSeverity(str, Enum):
     ERROR = 'error'
     WARN = 'warn'
     INFO = 'information'

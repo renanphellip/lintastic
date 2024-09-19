@@ -4,7 +4,7 @@ from rich.console import Console
 from lintastic.file_reader.file_reader_service import FileReaderService
 
 
-class RefResolver:
+class RefResolveService:
     def __init__(
         self,
         file_reader_service=FileReaderService(),

@@ -6,10 +6,10 @@ from rich.console import Console
 from rich.markup import escape
 
 from lintastic.file_reader.file_reader_service import FileReaderService
-from lintastic.resolver.ref_resolver import RefResolver
+from lintastic.resolver.ref_resolve_service import RefResolveService
 
 
-class DocumentResolverService:
+class DocumentResolveHandler:
     def __init__(
         self,
         file_reader_service=FileReaderService(),
@@ -19,7 +19,9 @@ class DocumentResolverService:
         self.file_reader_service = file_reader_service
         self.verbose = verbose
         self.console = console
-        self.ref_resolver = RefResolver(file_reader_service, verbose)
+        self.ref_resolve_service = RefResolveService(
+            file_reader_service, verbose
+        )
 
     def resolve(self, document_path: str) -> Dict[str, Any]:
         try:
@@ -31,7 +33,7 @@ class DocumentResolverService:
             if self.verbose:
                 self.console.print(f'Resolving: [blue]{document_path}[/blue]')
 
-            resolved_document_data = self.ref_resolver.resolve(
+            resolved_document_data = self.ref_resolve_service.resolve(
                 document_data, document_base_path
             )
             return resolved_document_data

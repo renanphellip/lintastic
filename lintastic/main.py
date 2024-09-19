@@ -2,9 +2,7 @@
 
 import typer
 
-from lintastic.commands.resolve import resolve
-from lintastic.commands.validate import validate
-from lintastic.commands.version import version
+from .commands import *
 
 cli = typer.Typer(help='Lintastic', no_args_is_help=True)
 cli.command(help='Show Lintastic CLI version')(version)

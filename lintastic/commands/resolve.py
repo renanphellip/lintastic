@@ -3,9 +3,9 @@ from typing import Literal
 import typer
 from typing_extensions import Annotated
 
-from lintastic.file_writer.file_writer_service import FileWriterService
-from lintastic.resolver.document_resolver_service import (
-    DocumentResolverService,
+from ..file_writer import FileWriterService
+from ..resolver import (
+    DocumentResolveHandler,
 )
 from lintastic.utils.file_validator import FileValidator
 from rich import print
@@ -47,8 +47,8 @@ def resolve(
     )
     file_validator.validate_existence(document_path, verbose)
 
-    document_resolver_service = DocumentResolverService(verbose=verbose)
-    resolved_document_data = document_resolver_service.resolve(document_path)
+    document_resolve_handler = DocumentResolveHandler(verbose=verbose)
+    resolved_document_data = document_resolve_handler.resolve(document_path)
 
     file_writer_service = FileWriterService()
     absolute_output_path = file_writer_service.write_file(

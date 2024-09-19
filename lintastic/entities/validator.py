@@ -1,9 +1,7 @@
-from enum import Enum
 from typing import List
-
 from pydantic.dataclasses import dataclass
 
-from lintastic.entities.spectral import Severity
+from lintastic.entities.spectral_severity import Severity
 
 
 @dataclass
@@ -27,12 +25,3 @@ class ValidationSummary:
 class ValidationResultCollection:
     validation_results: List[ValidationResult]
     validation_summary: ValidationSummary
-
-
-class OutputFormat(str, Enum):
-    TXT = 'text'
-    JSON = 'json'
-    NONE = 'none'
-
-    def __str__(self):
-        return self.value
