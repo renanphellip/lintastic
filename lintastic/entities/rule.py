@@ -2,8 +2,22 @@ from typing import List, Union
 
 from pydantic import BaseModel
 
-from .core import *
-from .spectral_severity import SpectralSeverity
+from .core import (
+    AlphabeticalRuleThen,
+    CasingRuleThen,
+    DefinedRuleThen,
+    EnumerationRuleThen,
+    FalsyRuleThen,
+    LengthRuleThen,
+    PatternRuleThen,
+    SchemaRuleThen,
+    TruthyRuleThen,
+    TypedEnumRuleThen,
+    UndefinedRuleThen,
+    UnreferencedReusableObjectRuleThen,
+    XORRuleThen
+)
+from .spectral import Severity
 from .custom import CustomRuleThen
 
 
@@ -12,7 +26,7 @@ class Rule(BaseModel):
     description: str
     message: Union[str, List[str]]
     documentation: Union[str, List[str]]
-    severity: SpectralSeverity
+    severity: Severity
     resolved: bool
     given: Union[str, List[str]]
     then: Union[

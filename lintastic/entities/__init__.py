@@ -1,6 +1,6 @@
 from .custom import CustomRuleThen
 from .rule import Rule
-from .spectral_severity import SpectralSeverity
+from .spectral import Severity, SpectralRuleset, SpectralRuleThen, SpectralRule
 from .validator import (
     ValidationResult,
     ValidationResultCollection,
@@ -10,7 +10,10 @@ from .validator import (
 __all__ = [
     'CustomRuleThen',
     'Rule',
-    'SpectralSeverity',
+    'Severity',
+    'SpectralRuleset',
+    'SpectralRuleThen',
+    'SpectralRule',
     'ValidationResult',
     'ValidationResultCollection',
     'ValidationSummary',

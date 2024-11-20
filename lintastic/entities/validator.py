@@ -1,7 +1,7 @@
 from typing import List
 from pydantic.dataclasses import dataclass
 
-from lintastic.entities.spectral_severity import Severity
+from .spectral import Severity
 
 
 @dataclass
