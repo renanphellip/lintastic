@@ -5,6 +5,7 @@ from lintastic.entities.validator import ValidationResultCollection
 
 
 class TxtFileWriter:
+    # ruff: noqa: PLR6301
     def write(self, output_path: str, data: Any) -> str:
         if not isinstance(data, ValidationResultCollection):
             raise TypeError(

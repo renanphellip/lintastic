@@ -1,14 +1,14 @@
-from typing import Literal
+import json
 
 import typer
 from typing_extensions import Annotated
 
-from ..file_writer import FileWriterService
-from ..resolver import (
+from lintastic.file_writer import FileWriterService
+from lintastic.logs import Logger, LogMessages
+from lintastic.resolver import (
     DocumentResolveHandler,
 )
 from lintastic.utils.file_validator import FileValidator
-from rich import print
 
 
 def resolve(
@@ -30,33 +30,35 @@ def resolve(
     verbose: Annotated[
         bool,
         typer.Option(
-            '--verbose', '-v', help='Verbose mode to display more logs.'
+            '--verbose', '-v', help='Verbose mode to display debug logs.'
         ),
     ] = False,
-) -> Literal[True]:
-    if verbose:
-        print()
-
+):
+    inputs = json.dumps({
+        'document_path': document_path,
+        'output_path': output_path,
+        'verbose': verbose,
+    })
+    Logger.info(LogMessages.INPUTS.format(inputs=inputs))
     supported_extensions = ('.yml', '.yaml', '.json')
-    file_validator = FileValidator()
-    file_validator.validate_extension(
+    FileValidator.validate_extension(
         document_path, supported_extensions, verbose
     )
-    file_validator.validate_extension(
+    FileValidator.validate_extension(
         output_path, supported_extensions, verbose
     )
-    file_validator.validate_existence(document_path, verbose)
+    FileValidator.validate_existence(document_path, verbose)
 
-    document_resolve_handler = DocumentResolveHandler(verbose=verbose)
+    document_resolve_handler = DocumentResolveHandler(verbose)
     resolved_document_data = document_resolve_handler.resolve(document_path)
 
-    file_writer_service = FileWriterService()
+    file_writer_service = FileWriterService(verbose)
     absolute_output_path = file_writer_service.write_file(
-        output_path, resolved_document_data, verbose
+        output_path, resolved_document_data
     )
 
-    print(
-        f'\n[green]Successfully resolved document to: {absolute_output_path}[/green]\n'
+    Logger.success(
+        LogMessages.DOCUMENT_RESOLVED.format(
+            resolved_document_path=absolute_output_path
+        )
     )
-
-    return True

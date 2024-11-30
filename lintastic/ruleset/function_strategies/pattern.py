@@ -1,8 +1,15 @@
-from ...entities.spectral import SpectralRuleThen
-from ...entities.core.pattern import PatternRuleThen, PatternFunctionOptions
+from lintastic.entities.core.pattern import (
+    PatternFunctionOptions,
+    PatternRuleThen,
+)
+from lintastic.entities.spectral import SpectralRuleThen
+
 
 class PatternFunctionStrategy:
-    def set_rule_then(self, spectral_rule_then: SpectralRuleThen, rule_name: str):
+    # ruff: noqa: PLR6301
+    def set_rule_then(
+        self, spectral_rule_then: SpectralRuleThen, rule_name: str
+    ):
         match = spectral_rule_then.functionOptions.get('match', '')
         not_match = spectral_rule_then.functionOptions.get('notMatch', '')
         if not match and not not_match:

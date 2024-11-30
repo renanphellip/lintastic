@@ -1,32 +1,32 @@
 import os
-import sys
 from typing import Any, Dict
 
-from rich.console import Console
-
 from lintastic.file_reader.file_reader_factory import FileReaderFactory
+from lintastic.logs import Logger, LogMessages
 
 
 class FileReaderService:
-    def __init__(self, console=Console(highlight=False)):
-        self.console = console
+    def __init__(self, verbose=False):
+        self.verbose = verbose
 
-    def read_file(self, file_path: str, verbose=False) -> Dict[str, Any]:
+    def read_file(self, file_path: str) -> Dict[str, Any]:
         absolute_file_path = os.path.abspath(file_path.strip())
-        if verbose:
-            self.console.print(f'Reading: [blue]{absolute_file_path}[/blue]')
+        if self.verbose:
+            Logger.debug(
+                LogMessages.READING_FILE.format(file_path=absolute_file_path)
+            )
         try:
             file_reader = FileReaderFactory.get_file_reader(absolute_file_path)
             return file_reader.read(absolute_file_path)
-        except RecursionError as error:
-            self.console.print(
-                f'[red]Failed to read: {absolute_file_path}\n'
-                'There is possibly a circular reference in the document '
-                'that references this file.[/red]'
+        except RecursionError:
+            Logger.error(
+                LogMessages.CIRCULAR_REFERENCE.format(
+                    file_path=absolute_file_path
+                )
             )
-            sys.exit(1)
         except Exception as error:
-            self.console.print(
-                f'[red]Failed to read: {absolute_file_path}\n' f'{error}[/red]'
+            Logger.error(
+                LogMessages.FAIL_TO_READ_FILE.format(
+                    file_path=absolute_file_path, error=error
+                )
             )
-            sys.exit(1)

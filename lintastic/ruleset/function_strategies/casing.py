@@ -1,8 +1,15 @@
-from ...entities.spectral import SpectralRuleThen
-from ...entities.core.casing import CasingRuleThen, CasingFunctionOptions
+from lintastic.entities.core.casing import (
+    CasingFunctionOptions,
+    CasingRuleThen,
+)
+from lintastic.entities.spectral import SpectralRuleThen
+
 
 class CasingFunctionStrategy:
-    def set_rule_then(self, spectral_rule_then: SpectralRuleThen):
+    # ruff: noqa: PLR6301
+    def set_rule_then(
+        self, spectral_rule_then: SpectralRuleThen, rule_name: str
+    ):
         return CasingRuleThen(
             function_options=CasingFunctionOptions(
                 type=spectral_rule_then.functionOptions.get('type'),

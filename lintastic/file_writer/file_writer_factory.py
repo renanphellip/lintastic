@@ -1,11 +1,8 @@
-import sys
-
-from rich.console import Console
-
 from lintastic.file_writer.file_writer import IFileWriter
 from lintastic.file_writer.json_file_writer import JsonFileWriter
 from lintastic.file_writer.txt_file_writer import TxtFileWriter
 from lintastic.file_writer.yaml_file_writer import YamlFileWriter
+from lintastic.logs import Logger, LogMessages
 
 
 class FileWriterFactory:
@@ -19,8 +16,8 @@ class FileWriterFactory:
         elif output_path.endswith(('yaml', 'yml')):
             return YamlFileWriter()
         else:
-            console = Console(highlight=False)
-            console.print(
-                f'[red]Unsupported file extension: {output_path}[/red]'
+            Logger.error(
+                LogMessages.UNSUPPORTED_FILE_EXTENSION.format(
+                    file_path=output_path
+                )
             )
-            sys.exit(1)

@@ -1,11 +1,8 @@
-import sys
-
-from rich.console import Console
-
 from lintastic.file_reader.file_reader import IFileReader
 from lintastic.file_reader.json_file_reader import JsonFileReader
 from lintastic.file_reader.toml_file_reader import TomlFileReader
 from lintastic.file_reader.yaml_file_reader import YamlFileReader
+from lintastic.logs import Logger, LogMessages
 
 
 class FileReaderFactory:
@@ -19,8 +16,8 @@ class FileReaderFactory:
         elif file_path.endswith(('yaml', 'yml')):
             return YamlFileReader()
         else:
-            console = Console(highlight=False)
-            console.print(
-                f'[red]Unsupported file extension: {file_path}[/red]'
+            Logger.error(
+                LogMessages.UNSUPPORTED_FILE_EXTENSION.format(
+                    file_path=file_path
+                )
             )
-            sys.exit(1)

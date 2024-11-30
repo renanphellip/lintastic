@@ -1,36 +1,53 @@
-import sys
-from typing import List, Union
+from typing import List
 
 from pydantic import ValidationError
-from rich.console import Console
 from rich.markup import escape
 
-from .function_strategy_mapper import FunctionStrategyMapper
-from ..entities import SpectralRuleThen, SpectralRule, Rule
+from lintastic.entities import Rule, SpectralRule, SpectralRuleThen
+from lintastic.logs import Logger, LogMessages
+
 from .function_strategies.function_strategy import FunctionStrategy
+from .function_strategy_mapper import FunctionStrategyMapper
+
 
 class RuleFactory:
-    def __init__(self, function_strategy_mapper=FunctionStrategyMapper(), console=Console(highlight=False)):
-        self.console = console
+    def __init__(self, function_strategy_mapper=FunctionStrategyMapper()):
         self.function_strategy_mapper = function_strategy_mapper
 
-    def __process_rule_then(
-        self, rule_name: str, rule_then: Union[SpectralRuleThen, List[SpectralRuleThen]]
-    ) -> Union[FunctionStrategy, List[FunctionStrategy]]:
-        if isinstance(rule_then, list):
-            list_classified_rule_then = []
-            for item in rule_then:
-                rule_strategy = self.function_strategy_mapper.get_strategy(item.function)
-                list_classified_rule_then.append(rule_strategy.set_rule_then(item, rule_name))
-            return list_classified_rule_then
-        rule_strategy = self.function_strategy_mapper.get_strategy(rule_then.function)
-        classified_rule_then = rule_strategy.set_rule_then(rule_then, rule_name)
+    def __process_single_rule_then(
+        self, rule_name: str, rule_then: SpectralRuleThen
+    ) -> FunctionStrategy:
+        rule_strategy = self.function_strategy_mapper.get_strategy(
+            rule_then.function
+        )
+        classified_rule_then = rule_strategy.set_rule_then(
+            rule_then, rule_name
+        )
         return classified_rule_then
+
+    def __process_multiple_rule_then(
+        self, rule_name: str, rule_then: List[SpectralRuleThen]
+    ) -> List[FunctionStrategy]:
+        list_classified_rule_then: List[FunctionStrategy] = []
+        for item in rule_then:
+            rule_strategy = self.function_strategy_mapper.get_strategy(
+                item.function
+            )
+            list_classified_rule_then.append(
+                rule_strategy.set_rule_then(item, rule_name)
+            )
+        return list_classified_rule_then
 
     def create_rule(self, rule_name: str, spectral_rule: SpectralRule) -> Rule:
         try:
-            rule_then = self.__process_rule_then(
-                rule_name, spectral_rule.then
+            rule_then = (
+                self.__process_multiple_rule_then(
+                    rule_name, spectral_rule.then
+                )
+                if isinstance(spectral_rule.then, list)
+                else self.__process_single_rule_then(
+                    rule_name, spectral_rule.then
+                )
             )
             return Rule(
                 name=rule_name,
@@ -43,10 +60,9 @@ class RuleFactory:
                 then=rule_then,
             )
         except (ValidationError, ValueError) as error:
-            self.console.print(
-                '[red]'
-                f'Rule name: {rule_name}\n'
-                f'Exception: {escape(str(error))}'
-                '[/red]'
+            escaped_error = escape(str(error))
+            Logger.error(
+                LogMessages.FAIL_TO_CREATE_RULE.format(
+                    rule_name=rule_name, error=escaped_error
+                )
             )
-            sys.exit(1)

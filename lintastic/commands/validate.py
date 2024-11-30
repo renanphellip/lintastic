@@ -1,11 +1,13 @@
+import json
 from typing import Optional
 
 import typer
 from typing_extensions import Annotated
 
-from lintastic.entities.validator import OutputFormat
+from lintastic.logs import Logger, LogMessages
 from lintastic.utils.file_validator import FileValidator
-from rich import print
+from lintastic.utils.output_format import OutputFormat
+from lintastic.validators.document_validator import DocumentValidator
 
 
 def validate(
@@ -45,32 +47,33 @@ def validate(
     verbose: Annotated[
         bool,
         typer.Option(
-            '--verbose', '-v', help='Verbose mode to display more logs.'
+            '--verbose', '-v', help='Verbose mode to display debug logs.'
         ),
     ] = False,
 ):
-    if verbose:
-        print()
-
+    inputs = json.dumps({
+        'document_path': document_path,
+        'ruleset_path': ruleset_path,
+        'results_path': results_path,
+        'output_format': output_format,
+        'verbose': verbose,
+    })
+    Logger.info(LogMessages.INPUTS.format(inputs=inputs))
     supported_extensions = ('.yml', '.yaml', '.json')
     results_supported_extensions = ('.txt', '.json')
-    file_validator = FileValidator()
-    file_validator.validate_extension(
+    FileValidator.validate_extension(
         document_path, supported_extensions, verbose
     )
-    file_validator.validate_extension(
+    FileValidator.validate_extension(
         ruleset_path, supported_extensions, verbose
     )
     if results_path:
-        file_validator.validate_extension(
+        FileValidator.validate_extension(
             results_path, results_supported_extensions, verbose
         )
-    file_validator.validate_existence(document_path, verbose)
-    file_validator.validate_existence(ruleset_path, verbose)
-
-    absolute_output_path = 'xpto'
-    print(
-        f'\nCheck the validation results at: [blue]{absolute_output_path}[/blue]\n'
+    FileValidator.validate_existence(document_path, verbose)
+    FileValidator.validate_existence(ruleset_path, verbose)
+    document_validator = DocumentValidator(
+        document_path, ruleset_path, 'custom_functions', verbose
     )
-
-    return True
+    document_validator.validate()

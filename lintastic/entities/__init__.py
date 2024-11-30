@@ -1,6 +1,6 @@
 from .custom import CustomRuleThen
 from .rule import Rule
-from .spectral import Severity, SpectralRuleset, SpectralRuleThen, SpectralRule
+from .spectral import Severity, SpectralRule, SpectralRuleset, SpectralRuleThen
 from .validator import (
     ValidationResult,
     ValidationResultCollection,

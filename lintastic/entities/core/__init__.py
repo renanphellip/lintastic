@@ -1,19 +1,19 @@
-from .alphabetical import AlphabeticalRuleThen, AlphabeticalFunctionOptions
-from .casing import CasingRuleThen, CasingFunctionOptions, CasingType
+from .alphabetical import AlphabeticalFunctionOptions, AlphabeticalRuleThen
+from .casing import CasingFunctionOptions, CasingRuleThen, CasingType
 from .defined import DefinedRuleThen
-from .enumeration import EnumerationRuleThen, EnumerationFunctionOptions
+from .enumeration import EnumerationFunctionOptions, EnumerationRuleThen
 from .falsy import FalsyRuleThen
-from .length import LengthRuleThen, LengthFunctionOptions
-from .pattern import PatternRuleThen, PatternFunctionOptions
-from .schema import SchemaRuleThen, SchemaFunctionOptions, JSONSchemaDraft
+from .length import LengthFunctionOptions, LengthRuleThen
+from .pattern import PatternFunctionOptions, PatternRuleThen
+from .schema import JSONSchemaDraft, SchemaFunctionOptions, SchemaRuleThen
 from .truthy import TruthyRuleThen
-from .typed_enum import TypedEnumRuleThen, TypedEnumFunctionOptions
+from .typed_enum import TypedEnumFunctionOptions, TypedEnumRuleThen
 from .undefined import UndefinedRuleThen
 from .unreferenced_reusable_object import (
+    UnreferencedReusableObjectFunctionOptions,
     UnreferencedReusableObjectRuleThen,
-    UnreferencedReusableObjectFunctionOptions
 )
-from .xor import XORRuleThen, XORFunctionOptions
+from .xor import XORFunctionOptions, XORRuleThen
 
 __all__ = [
     'AlphabeticalRuleThen',
@@ -39,5 +39,5 @@ __all__ = [
     'UnreferencedReusableObjectRuleThen',
     'UnreferencedReusableObjectFunctionOptions',
     'XORRuleThen',
-    'XORFunctionOptions'
+    'XORFunctionOptions',
 ]

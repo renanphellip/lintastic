@@ -52,7 +52,7 @@ def test_read_file_verbose(mocker, file_reader_service, mock_console):
     mocker.patch.object(FileReaderFactory, 'get_file_reader', return_value=mock_file_reader)
     mocker.patch('os.path.abspath', return_value=absolute_file_path)
     
-    result = file_reader_service.read_file(file_path, verbose=True)
+    result = file_reader_service.read_file(file_path)
     
     assert result == expected_result
     mock_console.print.assert_any_call(first_message)

@@ -1,7 +1,7 @@
 from typing import Any, Dict, List
-from rich.console import Console
 
 from lintastic.file_reader.file_reader_service import FileReaderService
+from lintastic.logs import Logger, LogMessages
 
 
 class RefResolveService:
@@ -9,10 +9,8 @@ class RefResolveService:
         self,
         file_reader_service=FileReaderService(),
         verbose=False,
-        console=Console(highlight=False),
     ):
         self.file_reader_service = file_reader_service
-        self.console = console
         self.verbose = verbose
 
     def resolve(self, data: Any, base_path: str) -> Any:
@@ -22,6 +20,7 @@ class RefResolveService:
             return self.__resolve_list(data, base_path)
         return data
 
+    # ruff: noqa: PLR6301
     def __is_external_reference(self, key: str, value: Any) -> bool:
         return (
             key == '$ref'
@@ -33,11 +32,11 @@ class RefResolveService:
         self, file_name: str, base_path: str
     ) -> Any:
         file_path = f'{base_path}/{file_name}'
-        external_ref_content = self.file_reader_service.read_file(
-            file_path, self.verbose
-        )
+        external_ref_content = self.file_reader_service.read_file(file_path)
         if self.verbose:
-            self.console.print(f'Resolving: [blue]{file_path}[/blue]')
+            Logger.debug(
+                LogMessages.RESOLVING_FILE.format(document_path=file_path)
+            )
         data = self.resolve(external_ref_content, base_path)
         return data
 

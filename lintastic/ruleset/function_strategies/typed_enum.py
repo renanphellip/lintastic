@@ -1,8 +1,15 @@
-from ...entities.spectral import SpectralRuleThen
-from ...entities.core.typed_enum import TypedEnumRuleThen, TypedEnumFunctionOptions
+from lintastic.entities.core.typed_enum import (
+    TypedEnumFunctionOptions,
+    TypedEnumRuleThen,
+)
+from lintastic.entities.spectral import SpectralRuleThen
+
 
 class TypedEnumFunctionStrategy:
-    def set_rule_then(self, spectral_rule_then: SpectralRuleThen):
+    # ruff: noqa: PLR6301
+    def set_rule_then(
+        self, spectral_rule_then: SpectralRuleThen, rule_name: str
+    ):
         return TypedEnumRuleThen(
             function_options=TypedEnumFunctionOptions(
                 type=spectral_rule_then.functionOptions.get('type', ''),

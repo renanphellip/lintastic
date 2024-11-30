@@ -4,14 +4,16 @@ from .custom import CustomFunctionStrategy
 from .defined import DefinedFunctionStrategy
 from .enumeration import EnumerationFunctionStrategy
 from .falsy import FalsyFunctionStrategy
+from .function_strategy import FunctionStrategy
 from .length import LengthFunctionStrategy
 from .pattern import PatternFunctionStrategy
-from .function_strategy import FunctionStrategy
 from .schema import SchemaFunctionStrategy
 from .truthy import TruthyFunctionStrategy
 from .typed_enum import TypedEnumFunctionStrategy
 from .undefined import UndefinedFunctionStrategy
-from .unreferenced_reusable_object import UnreferencedReusableObjectFunctionStrategy
+from .unreferenced_reusable_object import (
+    UnreferencedReusableObjectFunctionStrategy,
+)
 from .xor import XORFunctionStrategy
 
 __all__ = [
@@ -29,5 +31,5 @@ __all__ = [
     'TypedEnumFunctionStrategy',
     'UndefinedFunctionStrategy',
     'UnreferencedReusableObjectFunctionStrategy',
-    'XORFunctionStrategy'
+    'XORFunctionStrategy',
 ]

@@ -15,10 +15,10 @@ from .core import (
     TypedEnumRuleThen,
     UndefinedRuleThen,
     UnreferencedReusableObjectRuleThen,
-    XORRuleThen
+    XORRuleThen,
 )
-from .spectral import Severity
 from .custom import CustomRuleThen
+from .spectral import Severity
 
 
 class Rule(BaseModel):

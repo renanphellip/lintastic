@@ -1,0 +1,42 @@
+rules:
+  # my-rule:
+  #   description: "Schemas references should not end with `.json`."
+  #   given: "$.components.schemas.*.'$ref'"
+  #   resolved: false
+  #   severity: error
+  #   documentation: https://www.google.com.br/
+  #   then:
+  #     function: pattern
+  #     functionOptions:
+  #       notMatch: .+\.json$
+  openapi-tags-alphabetical:
+    description: OpenAPI object should have alphabetical `tags`.
+    recommended: true
+    given: "$"
+    then:
+      field: tags
+      function: alphabetical
+      functionOptions:
+        keyedBy: name
+  # truthy-and-falsy:
+  #   description: Contact object must have "name", "url", and "email".
+  #   message: '{{error}}'
+  #   given:
+  #     - $.info.contact
+  #     - $.info.license
+  #   severity: error
+  #   then:
+  #     - field: name
+  #       function: truthy
+  #     - field: url
+  #       function: truthy
+  #     - field: email
+  #       function: falsy
+  # whitelisted-tags:
+  #   description: Pick from a very restrictive set of tags.
+  #   given: "$.paths.*"
+  #   then:
+  #     field: tags
+  #     function: null
+  #     functionOptions:
+  #       teste: teste

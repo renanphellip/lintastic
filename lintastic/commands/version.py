@@ -1,20 +1,18 @@
-import sys
-from typing import Literal
-
-from rich import print
-
 from lintastic.file_reader.file_reader_service import FileReaderService
+from lintastic.logs import Logger, LogMessages
 
 
-def version() -> Literal[True]:
+def version():
+    file_reader_service = FileReaderService()
+    data = file_reader_service.read_file('pyproject.toml')
     try:
-        file_reader_service = FileReaderService()
-        data = file_reader_service.read_file('pyproject.toml')
-        version = data['tool']['poetry']['version']
-        if not version:
+        project_version = data['tool']['poetry']['version']
+        if not project_version:
             raise KeyError
-        print(f'\nLintastic CLI version: {version}\n')
-        return True
-    except Exception:
-        print('\n[red]Lintastic version was not specified.[/red]\n')
-        sys.exit(1)
+        Logger.info(
+            LogMessages.DISPLAY_VERSION.format(
+                lintastic_version=project_version
+            )
+        )
+    except KeyError:
+        Logger.error(LogMessages.VERSION_NOT_SPECIFIED)

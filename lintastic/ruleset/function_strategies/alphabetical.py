@@ -1,8 +1,15 @@
-from ...entities.spectral import SpectralRuleThen
-from ...entities.core.alphabetical import AlphabeticalRuleThen, AlphabeticalFunctionOptions
+from lintastic.entities.core.alphabetical import (
+    AlphabeticalFunctionOptions,
+    AlphabeticalRuleThen,
+)
+from lintastic.entities.spectral import SpectralRuleThen
+
 
 class AlphabeticalFunctionStrategy:
-    def set_rule_then(self, spectral_rule_then: SpectralRuleThen):
+    # ruff: noqa: PLR6301
+    def set_rule_then(
+        self, spectral_rule_then: SpectralRuleThen, rule_name: str
+    ):
         return AlphabeticalRuleThen(
             field=spectral_rule_then.field,
             function_options=AlphabeticalFunctionOptions(
