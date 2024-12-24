@@ -4,7 +4,8 @@ from pydantic import ValidationError
 from rich.markup import escape
 
 from lintastic.entities import Rule, SpectralRule, SpectralRuleThen
-from lintastic.logs import Logger, LogMessages
+from lintastic.enums import LogMessage
+from lintastic.utils.logger import Logger
 
 from .function_strategies.function_strategy import FunctionStrategy
 from .function_strategy_mapper import FunctionStrategyMapper
@@ -62,7 +63,7 @@ class RuleFactory:
         except (ValidationError, ValueError) as error:
             escaped_error = escape(str(error))
             Logger.error(
-                LogMessages.FAIL_TO_CREATE_RULE.format(
+                LogMessage.FAIL_TO_CREATE_RULE.format(
                     rule_name=rule_name, error=escaped_error
                 )
             )

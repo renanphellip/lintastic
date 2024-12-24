@@ -1,6 +1,6 @@
 from typing import Any, Dict, List, Union
 
-from lintastic.entities.core.length import LengthFunctionOptions
+from lintastic.entities.functions.length import LengthFunctionOptions
 
 
 def _check_max_length(value: Any, max_length: Union[int, float]) -> bool:
@@ -29,6 +29,7 @@ def length(
     function_options: LengthFunctionOptions,
     field: str,
     verbose: bool,
+    rule_name: str,
 ) -> List[str]:
     min_length = function_options.min
     max_length = function_options.max

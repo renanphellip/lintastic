@@ -1,6 +1,6 @@
 from typing import Any, List
 
-from lintastic.entities.core.unreferenced_reusable_object import (
+from lintastic.entities.functions.unreferenced_reusable_object import (
     UnreferencedReusableObjectFunctionOptions,
 )
 
@@ -36,6 +36,7 @@ def unreferencedReusableObject(
     target_value: Any,
     function_options: UnreferencedReusableObjectFunctionOptions,
     verbose: bool,
+    rule_name: str,
 ) -> List[str]:
     reusable_objects_location = function_options.reusable_objects_location
     if not _ref_exists(target_value, reusable_objects_location):

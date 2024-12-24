@@ -1,6 +1,6 @@
 from typing import Any, Dict, List
 
-from lintastic.entities.core.xor import XORFunctionOptions
+from lintastic.entities.functions.xor import XORFunctionOptions
 
 
 def xor(
@@ -8,6 +8,7 @@ def xor(
     target_value: Dict[str, Any],
     function_options: XORFunctionOptions,
     verbose: bool,
+    rule_name: str,
 ) -> List[str]:
     properties = function_options.properties
     properties_found = sum(

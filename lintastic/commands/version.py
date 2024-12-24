@@ -1,5 +1,6 @@
-from lintastic.file_reader.file_reader_service import FileReaderService
-from lintastic.logs import Logger, LogMessages
+from lintastic.enums import LogMessage
+from lintastic.readers.file_reader_service import FileReaderService
+from lintastic.utils.logger import Logger
 
 
 def version():
@@ -10,9 +11,9 @@ def version():
         if not project_version:
             raise KeyError
         Logger.info(
-            LogMessages.DISPLAY_VERSION.format(
+            LogMessage.DISPLAY_VERSION.format(
                 lintastic_version=project_version
             )
         )
     except KeyError:
-        Logger.error(LogMessages.VERSION_NOT_SPECIFIED)
+        Logger.error(LogMessage.VERSION_NOT_SPECIFIED)

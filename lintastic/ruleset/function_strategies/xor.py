@@ -1,4 +1,7 @@
-from lintastic.entities.core.xor import XORFunctionOptions, XORRuleThen
+from lintastic.entities.functions.xor import (
+    XORFunctionOptions,
+    XORRuleThen,
+)
 from lintastic.entities.spectral import SpectralRuleThen
 
 

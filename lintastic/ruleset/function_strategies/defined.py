@@ -1,4 +1,4 @@
-from lintastic.entities.core.defined import DefinedRuleThen
+from lintastic.entities.functions.defined import DefinedRuleThen
 from lintastic.entities.spectral import SpectralRuleThen
 
 

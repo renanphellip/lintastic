@@ -3,12 +3,16 @@ import json
 import typer
 from typing_extensions import Annotated
 
-from lintastic.file_writer import FileWriterService
-from lintastic.logs import Logger, LogMessages
+from lintastic.enums import LogMessage
+from lintastic.enums.supported_document_extension import (
+    SupportedDocumentExtension,
+)
 from lintastic.resolver import (
     DocumentResolveHandler,
 )
 from lintastic.utils.file_validator import FileValidator
+from lintastic.utils.logger import Logger
+from lintastic.writers import FileWriterService
 
 
 def resolve(
@@ -39,15 +43,13 @@ def resolve(
         'output_path': output_path,
         'verbose': verbose,
     })
-    Logger.info(LogMessages.INPUTS.format(inputs=inputs))
-    supported_extensions = ('.yml', '.yaml', '.json')
-    FileValidator.validate_extension(
-        document_path, supported_extensions, verbose
+    Logger.info(LogMessage.INPUTS.format(inputs=inputs))
+    file_validator = FileValidator(verbose)
+    file_validator.validate_extension(
+        document_path, SupportedDocumentExtension
     )
-    FileValidator.validate_extension(
-        output_path, supported_extensions, verbose
-    )
-    FileValidator.validate_existence(document_path, verbose)
+    file_validator.validate_extension(output_path, SupportedDocumentExtension)
+    file_validator.validate_existence(document_path)
 
     document_resolve_handler = DocumentResolveHandler(verbose)
     resolved_document_data = document_resolve_handler.resolve(document_path)
@@ -58,7 +60,7 @@ def resolve(
     )
 
     Logger.success(
-        LogMessages.DOCUMENT_RESOLVED.format(
+        LogMessage.DOCUMENT_RESOLVED.format(
             resolved_document_path=absolute_output_path
         )
     )

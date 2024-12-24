@@ -1,4 +1,4 @@
-from lintastic.entities.core.casing import (
+from lintastic.entities.functions.casing import (
     CasingFunctionOptions,
     CasingRuleThen,
 )

@@ -1,7 +1,7 @@
 import re
 from typing import List
 
-from lintastic.entities.core.casing import CasingFunctionOptions
+from lintastic.entities.functions.casing import CasingFunctionOptions
 
 
 def _is_flat_case(
@@ -241,6 +241,7 @@ def casing(
     target_value: str,
     function_options: CasingFunctionOptions,
     verbose: bool,
+    rule_name: str,
 ) -> List[str]:
     disallow_digits = function_options.disallow_digits
     separator_char = function_options.separator_char

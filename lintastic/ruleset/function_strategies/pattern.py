@@ -1,4 +1,4 @@
-from lintastic.entities.core.pattern import (
+from lintastic.entities.functions.pattern import (
     PatternFunctionOptions,
     PatternRuleThen,
 )

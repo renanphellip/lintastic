@@ -1,6 +1,8 @@
 from typing import Any, Dict, List
 
-from lintastic.entities.core.enumeration import EnumerationFunctionOptions
+from lintastic.entities.functions.enumeration import (
+    EnumerationFunctionOptions,
+)
 
 
 def enumeration(
@@ -9,6 +11,7 @@ def enumeration(
     function_options: EnumerationFunctionOptions,
     field: str,
     verbose: bool,
+    rule_name: str,
 ) -> List[str]:
     possible_values = function_options.values
     field_target_value = target_value.get(field)

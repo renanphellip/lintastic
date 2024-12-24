@@ -1,6 +1,7 @@
-from .custom import CustomRuleThen
+from lintastic.enums import Severity
+
 from .rule import Rule
-from .spectral import Severity, SpectralRule, SpectralRuleset, SpectralRuleThen
+from .spectral import SpectralRule, SpectralRuleset, SpectralRuleThen
 from .validator import (
     ValidationResult,
     ValidationResultCollection,
@@ -8,7 +9,6 @@ from .validator import (
 )
 
 __all__ = [
-    'CustomRuleThen',
     'Rule',
     'Severity',
     'SpectralRuleset',

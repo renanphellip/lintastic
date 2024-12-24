@@ -1,17 +1,8 @@
-from enum import Enum
 from typing import Any, Dict, List, Union
 
 from pydantic import BaseModel
 
-
-class Severity(str, Enum):
-    ERROR = 'error'
-    WARN = 'warn'
-    INFO = 'information'
-    HINT = 'hint'
-
-    def __str__(self):
-        return self.value
+from lintastic.enums import Severity
 
 
 class SpectralRuleThen(BaseModel):

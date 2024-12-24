@@ -1,4 +1,4 @@
-from lintastic.entities.core.falsy import FalsyRuleThen
+from lintastic.entities.functions.falsy import FalsyRuleThen
 from lintastic.entities.spectral import SpectralRuleThen
 
 

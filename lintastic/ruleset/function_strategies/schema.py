@@ -1,4 +1,4 @@
-from lintastic.entities.core.schema import (
+from lintastic.entities.functions.schema import (
     JSONSchemaDraft,
     SchemaFunctionOptions,
     SchemaRuleThen,

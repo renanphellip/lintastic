@@ -1,7 +1,8 @@
 from typing import Dict, List
 
 from lintastic.entities.rule import Rule
-from lintastic.logs import Logger, LogMessages
+from lintastic.enums import LogMessage
+from lintastic.utils.logger import Logger
 
 
 class FunctionValidator:
@@ -24,7 +25,7 @@ class FunctionValidator:
         if unique_missing_functions:
             string_missing_functions = ', '.join(unique_missing_functions)
             Logger.error(
-                LogMessages.RULESET_FUNCTIONS_NOT_FOUND.format(
+                LogMessage.RULESET_FUNCTIONS_NOT_FOUND.format(
                     functions=string_missing_functions
                 )
             )

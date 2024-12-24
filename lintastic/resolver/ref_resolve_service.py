@@ -1,7 +1,8 @@
 from typing import Any, Dict, List
 
-from lintastic.file_reader.file_reader_service import FileReaderService
-from lintastic.logs import Logger, LogMessages
+from lintastic.enums import LogMessage
+from lintastic.readers.file_reader_service import FileReaderService
+from lintastic.utils.logger import Logger
 
 
 class RefResolveService:
@@ -35,7 +36,7 @@ class RefResolveService:
         external_ref_content = self.file_reader_service.read_file(file_path)
         if self.verbose:
             Logger.debug(
-                LogMessages.RESOLVING_FILE.format(document_path=file_path)
+                LogMessage.RESOLVING_FILE.format(document_path=file_path)
             )
         data = self.resolve(external_ref_content, base_path)
         return data

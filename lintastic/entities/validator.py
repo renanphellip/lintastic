@@ -2,7 +2,7 @@ from typing import List
 
 from pydantic.dataclasses import dataclass
 
-from .spectral import Severity
+from lintastic.enums import Severity
 
 
 @dataclass

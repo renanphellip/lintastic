@@ -1,4 +1,4 @@
-from lintastic.entities.core.enumeration import (
+from lintastic.entities.functions.enumeration import (
     EnumerationFunctionOptions,
     EnumerationRuleThen,
 )

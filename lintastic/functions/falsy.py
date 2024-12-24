@@ -2,7 +2,11 @@ from typing import Any, Dict, List
 
 
 def falsy(
-    context: str, target_value: Dict[str, Any], field: str, verbose: bool
+    context: str,
+    target_value: Dict[str, Any],
+    field: str,
+    verbose: bool,
+    rule_name: str,
 ) -> List[str]:
     falsy_values = (False, '', 0, None)
     if target_value.get(field) not in falsy_values:

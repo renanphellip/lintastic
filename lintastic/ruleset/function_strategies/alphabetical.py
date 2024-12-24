@@ -1,4 +1,4 @@
-from lintastic.entities.core.alphabetical import (
+from lintastic.entities.functions.alphabetical import (
     AlphabeticalFunctionOptions,
     AlphabeticalRuleThen,
 )

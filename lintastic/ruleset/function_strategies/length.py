@@ -1,4 +1,4 @@
-from lintastic.entities.core.length import (
+from lintastic.entities.functions.length import (
     LengthFunctionOptions,
     LengthRuleThen,
 )

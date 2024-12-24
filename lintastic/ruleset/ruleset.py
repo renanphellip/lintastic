@@ -4,8 +4,9 @@ from typing import Any, Dict, List
 from pydantic import ValidationError
 
 from lintastic.entities import Rule, SpectralRuleset
-from lintastic.file_reader.file_reader_service import FileReaderService
-from lintastic.logs import Logger, LogMessages
+from lintastic.enums import LogMessage
+from lintastic.readers.file_reader_service import FileReaderService
+from lintastic.utils.logger import Logger
 
 from .function_strategy_mapper import FunctionStrategyMapper
 from .rule_factory import RuleFactory
@@ -35,9 +36,7 @@ class Ruleset:
                 })
             formatted_error = json.dumps(errors, ensure_ascii=False)
             Logger.error(
-                LogMessages.INVALID_RULESET_SCHEMA.format(
-                    error=formatted_error
-                )
+                LogMessage.INVALID_RULESET_SCHEMA.format(error=formatted_error)
             )
 
     def get_rules(self) -> List[Rule]:

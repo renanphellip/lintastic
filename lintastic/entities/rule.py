@@ -2,9 +2,12 @@ from typing import List, Union
 
 from pydantic import BaseModel
 
-from .core import (
+from lintastic.enums import Severity
+
+from .functions import (
     AlphabeticalRuleThen,
     CasingRuleThen,
+    CustomRuleThen,
     DefinedRuleThen,
     EnumerationRuleThen,
     FalsyRuleThen,
@@ -17,8 +20,6 @@ from .core import (
     UnreferencedReusableObjectRuleThen,
     XORRuleThen,
 )
-from .custom import CustomRuleThen
-from .spectral import Severity
 
 
 class Rule(BaseModel):
@@ -55,8 +56,8 @@ class Rule(BaseModel):
     ]
 
     @staticmethod
-    def __process_given(given_string: str) -> str:
-        paths = given_string.split('.')
+    def _quote_unquoted_jsonpaths(jsonpath: str) -> str:
+        paths = jsonpath.split('.')
         processed_paths = []
         for path in paths:
             if (
@@ -69,25 +70,14 @@ class Rule(BaseModel):
                 processed_paths.append(path)
         return '.'.join(processed_paths)
 
+    @staticmethod
+    def _transform_data_to_list(data: str) -> List[str]:
+        return data if isinstance(data, list) else [data] if data else []
+
     def model_post_init(self, __context):
-        self.message = (
-            self.message
-            if isinstance(self.message, list)
-            else [self.message]
-            if self.message
-            else []
-        )
-        self.documentation = (
-            self.documentation
-            if isinstance(self.documentation, list)
-            else [self.documentation]
-            if self.documentation
-            else []
-        )
-        self.given = (
-            [self.__process_given(context) for context in self.given]
-            if isinstance(self.given, list)
-            else [self.given]
-            if self.given
-            else []
-        )
+        self.message = self._transform_data_to_list(self.message)
+        self.documentation = self._transform_data_to_list(self.documentation)
+        self.given = self._transform_data_to_list(self.given)
+        self.given = [
+            self._quote_unquoted_jsonpaths(jsonpath) for jsonpath in self.given
+        ]

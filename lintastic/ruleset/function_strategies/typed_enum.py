@@ -1,4 +1,4 @@
-from lintastic.entities.core.typed_enum import (
+from lintastic.entities.functions.typed_enum import (
     TypedEnumFunctionOptions,
     TypedEnumRuleThen,
 )

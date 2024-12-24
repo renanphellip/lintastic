@@ -9,7 +9,7 @@ from jsonschema import (
     validate,
 )
 
-from lintastic.entities.core.schema import SchemaFunctionOptions
+from lintastic.entities.functions.schema import SchemaFunctionOptions
 
 
 def schema(
@@ -18,6 +18,7 @@ def schema(
     function_options: SchemaFunctionOptions,
     field: str,
     verbose: bool,
+    rule_name: str,
 ) -> List[str]:
     try:
         expected_schema = function_options.schema_definition

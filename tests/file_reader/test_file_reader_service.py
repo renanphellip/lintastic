@@ -1,7 +1,7 @@
 import pytest
 from rich.console import Console
-from lintastic.file_reader.file_reader_factory import FileReaderFactory
-from lintastic.file_reader.file_reader_service import FileReaderService
+from lintastic.readers.file_reader_factory import FileReaderFactory
+from lintastic.readers.file_reader_service import FileReaderService
 
 
 @pytest.fixture

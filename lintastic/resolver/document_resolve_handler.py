@@ -3,9 +3,10 @@ from typing import Any, Dict
 
 from rich.markup import escape
 
-from lintastic.file_reader.file_reader_service import FileReaderService
-from lintastic.logs import Logger, LogMessages
+from lintastic.enums import LogMessage
+from lintastic.readers.file_reader_service import FileReaderService
 from lintastic.resolver.ref_resolve_service import RefResolveService
+from lintastic.utils.logger import Logger
 
 
 class DocumentResolveHandler:
@@ -26,7 +27,7 @@ class DocumentResolveHandler:
 
             if self.verbose:
                 Logger.debug(
-                    LogMessages.RESOLVING_FILE.format(
+                    LogMessage.RESOLVING_FILE.format(
                         document_path=document_path
                     )
                 )
@@ -39,7 +40,7 @@ class DocumentResolveHandler:
         except Exception as error:
             escaped_error = escape(str(error))
             Logger.error(
-                LogMessages.FAIL_TO_RESOLVE_FILE.format(
+                LogMessage.FAIL_TO_RESOLVE_FILE.format(
                     document_path=document_path, error=escaped_error
                 )
             )

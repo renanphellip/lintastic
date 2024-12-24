@@ -1,7 +1,7 @@
 import pytest
 from rich.console import Console
 from lintastic.commands.version import version
-from lintastic.file_reader.file_reader_service import FileReaderService
+from lintastic.readers.file_reader_service import FileReaderService
 
 
 def test_version_success(mocker):

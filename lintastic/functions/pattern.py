@@ -1,7 +1,7 @@
 import re
 from typing import List
 
-from lintastic.entities.core.pattern import PatternFunctionOptions
+from lintastic.entities.functions.pattern import PatternFunctionOptions
 
 
 def pattern(
@@ -9,6 +9,7 @@ def pattern(
     target_value: str,
     function_options: PatternFunctionOptions,
     verbose: bool,
+    rule_name: str,
 ) -> List[str]:
     regex_match = function_options.match
     regex_not_match = function_options.not_match

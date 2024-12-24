@@ -1,4 +1,4 @@
-from lintastic.entities.core.truthy import TruthyRuleThen
+from lintastic.entities.functions.truthy import TruthyRuleThen
 from lintastic.entities.spectral import SpectralRuleThen
 
 

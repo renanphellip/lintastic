@@ -1,4 +1,4 @@
-from lintastic.entities.core.unreferenced_reusable_object import (
+from lintastic.entities.functions.unreferenced_reusable_object import (
     UnreferencedReusableObjectFunctionOptions,
     UnreferencedReusableObjectRuleThen,
 )

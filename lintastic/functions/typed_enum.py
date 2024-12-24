@@ -1,6 +1,8 @@
 from typing import List, Union
 
-from lintastic.entities.core.typed_enum import TypedEnumFunctionOptions
+from lintastic.entities.functions.typed_enum import (
+    TypedEnumFunctionOptions,
+)
 
 
 def typedEnum(
@@ -8,6 +10,7 @@ def typedEnum(
     target_value: Union[str, int, float, bool],
     function_options: TypedEnumFunctionOptions,
     verbose: bool,
+    rule_name: str,
 ) -> List[str]:
     opt_enum = function_options.enum
     opt_type = function_options.type

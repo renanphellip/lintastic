@@ -1,6 +1,8 @@
 from typing import Any, Dict, List
 
-from lintastic.entities.core.alphabetical import AlphabeticalFunctionOptions
+from lintastic.entities.functions.alphabetical import (
+    AlphabeticalFunctionOptions,
+)
 
 
 def alphabetical(
@@ -9,6 +11,7 @@ def alphabetical(
     function_options: AlphabeticalFunctionOptions,
     field: str,
     verbose: bool,
+    rule_name: str,
 ) -> List[str]:
     field_target_value = target_value.get(field)
     keyed_by = function_options.keyed_by
@@ -20,6 +23,6 @@ def alphabetical(
         ]
         if keys != sorted(keys):
             return [
-                f'{context} should have alphabetical {field} by {keyed_by}.'
+                f'"{context}" should have alphabetical "{field}" by {keyed_by}.'
             ]
     return []

@@ -1,4 +1,4 @@
-# Lintastic <img src="./assets/lintastic-logo.png" alt="Lintastic logo" width="30"/>
+# Lintastic <img src="./.assets/lintastic-logo.png" alt="Lintastic logo" width="30"/>
 
 Lintastic is a command line interface tool to validate YAML and JSON documents.
 
