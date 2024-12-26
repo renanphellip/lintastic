@@ -40,7 +40,10 @@ class LogMessage(str, Enum):
     RULESET_FUNCTIONS_NOT_FOUND = (
         'The following ruleset functions was not found: {functions}'
     )
-    JSONPATH_RESULTS_LENGTH = '{results_len} occurrences were found for JSONPath pattern: {jsonpath_pattern}'
+    JSONPATH_RESULTS_LENGTH = (
+        '{results_len} occurrences were found for JSONPath pattern: '
+        '{jsonpath_pattern}'
+    )
     FAIL_TO_PARSE_JSONPATH = (
         'Failed to parse JSONPath "{jsonpath_pattern}": {error}'
     )

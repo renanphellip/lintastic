@@ -1,12 +1,12 @@
 import json
-from typing import Any, Dict, List
+from typing import List
 
 from pydantic import ValidationError
 
 from lintastic.entities import Rule, SpectralRuleset
 from lintastic.enums import LogMessage
-from lintastic.readers.file_reader_service import FileReaderService
-from lintastic.utils.logger import Logger
+from lintastic.readers import FileReaderService
+from lintastic.utils import Logger
 
 from .function_strategy_mapper import FunctionStrategyMapper
 from .rule_factory import RuleFactory
@@ -23,7 +23,7 @@ class Ruleset:
 
     def __read_and_validate_ruleset(self) -> SpectralRuleset:
         try:
-            ruleset_data: Dict[str, Any] = self.file_reader_service.read_file(
+            ruleset_data = self.file_reader_service.read_file(
                 self.ruleset_path
             )
             return SpectralRuleset.model_validate(ruleset_data)

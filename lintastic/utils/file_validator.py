@@ -3,7 +3,7 @@ from enum import Enum
 from typing import Literal
 
 from lintastic.enums import LogMessage
-from lintastic.utils.logger import Logger
+from lintastic.utils import Logger
 
 
 class FileValidator:

@@ -23,6 +23,9 @@ def alphabetical(
         ]
         if keys != sorted(keys):
             return [
-                f'"{context}" should have alphabetical "{field}" by {keyed_by}.'
+                (
+                    f'"{context}" should have alphabetical "{field}" '
+                    f'by {keyed_by}.'
+                )
             ]
     return []

@@ -5,9 +5,9 @@ from lintastic.utils.logger import Logger
 
 def version():
     file_reader_service = FileReaderService()
-    data = file_reader_service.read_file('pyproject.toml')
+    pyproject = file_reader_service.read_file('pyproject.toml')
     try:
-        project_version = data['tool']['poetry']['version']
+        project_version = pyproject['tool']['poetry']['version']
         if not project_version:
             raise KeyError
         Logger.info(

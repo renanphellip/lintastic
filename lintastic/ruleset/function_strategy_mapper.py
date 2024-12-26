@@ -33,6 +33,7 @@ class FunctionStrategyMapper:
             CoreFunction.TRUTHY: TruthyFunctionStrategy(),
             CoreFunction.TYPED_ENUM: TypedEnumFunctionStrategy(),
             CoreFunction.UNDEFINED: UndefinedFunctionStrategy(),
+            # ruff: noqa: E501
             CoreFunction.UNREFERENCED_REUSABLE_OBJECT: UnreferencedReusableObjectFunctionStrategy(),
             CoreFunction.XOR: XORFunctionStrategy(),
         }

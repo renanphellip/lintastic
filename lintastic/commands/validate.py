@@ -4,13 +4,13 @@ from typing import Optional
 import typer
 from typing_extensions import Annotated
 
-from lintastic.enums import LogMessage, OutputFormat
-from lintastic.enums.supported_document_extension import (
+from lintastic.enums import (
+    LogMessage,
+    OutputFormat,
     SupportedDocumentExtension,
+    SupportedResultExtension,
 )
-from lintastic.enums.supported_output_extension import SupportedOutputExtension
-from lintastic.utils.file_validator import FileValidator
-from lintastic.utils.logger import Logger
+from lintastic.utils import FileValidator, Logger
 from lintastic.validators.document_validator import DocumentValidator
 
 
@@ -32,7 +32,7 @@ def validate(
         typer.Argument(
             help=(
                 'Validation results file path to be created. '
-                'Supported extensions: .json, .txt'
+                'Supported extensions: .json, .txt, .md'
             )
         ),
     ] = None,
@@ -55,6 +55,7 @@ def validate(
         ),
     ] = False,
 ):
+    # Init
     inputs = json.dumps({
         'document_path': document_path,
         'ruleset_path': ruleset_path,
@@ -63,6 +64,8 @@ def validate(
         'verbose': verbose,
     })
     Logger.info(LogMessage.INPUTS.format(inputs=inputs))
+
+    # Validation
     file_validator = FileValidator(verbose)
     file_validator.validate_extension(
         document_path, SupportedDocumentExtension
@@ -70,11 +73,15 @@ def validate(
     file_validator.validate_extension(ruleset_path, SupportedDocumentExtension)
     if results_path:
         file_validator.validate_extension(
-            results_path, SupportedOutputExtension
+            results_path, SupportedResultExtension
         )
     file_validator.validate_existence(document_path)
     file_validator.validate_existence(ruleset_path)
+
+    # Validate
     document_validator = DocumentValidator(
         document_path, ruleset_path, 'custom_functions', verbose
     )
     document_validator.validate()
+
+    # Output

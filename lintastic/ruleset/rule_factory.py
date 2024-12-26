@@ -1,13 +1,18 @@
-from typing import List
+from typing import List, Union
 
 from pydantic import ValidationError
 from rich.markup import escape
 
 from lintastic.entities import Rule, SpectralRule, SpectralRuleThen
+from lintastic.entities.functions import (
+    DefinedRuleThen,
+    FalsyRuleThen,
+    TruthyRuleThen,
+    UndefinedRuleThen,
+)
 from lintastic.enums import LogMessage
-from lintastic.utils.logger import Logger
+from lintastic.utils import Logger
 
-from .function_strategies.function_strategy import FunctionStrategy
 from .function_strategy_mapper import FunctionStrategyMapper
 
 
@@ -17,7 +22,7 @@ class RuleFactory:
 
     def __process_single_rule_then(
         self, rule_name: str, rule_then: SpectralRuleThen
-    ) -> FunctionStrategy:
+    ):
         rule_strategy = self.function_strategy_mapper.get_strategy(
             rule_then.function
         )
@@ -28,8 +33,15 @@ class RuleFactory:
 
     def __process_multiple_rule_then(
         self, rule_name: str, rule_then: List[SpectralRuleThen]
-    ) -> List[FunctionStrategy]:
-        list_classified_rule_then: List[FunctionStrategy] = []
+    ):
+        list_classified_rule_then: List[
+            Union[
+                DefinedRuleThen,
+                FalsyRuleThen,
+                TruthyRuleThen,
+                UndefinedRuleThen,
+            ]
+        ] = []
         for item in rule_then:
             rule_strategy = self.function_strategy_mapper.get_strategy(
                 item.function

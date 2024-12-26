@@ -5,7 +5,7 @@ from .log_message import LogMessage
 from .output_format import OutputFormat
 from .severity import Severity
 from .supported_document_extension import SupportedDocumentExtension
-from .supported_output_extension import SupportedOutputExtension
+from .supported_result_extension import SupportedResultExtension
 
 __all__ = [
     'CasingType',
@@ -15,5 +15,5 @@ __all__ = [
     'OutputFormat',
     'Severity',
     'SupportedDocumentExtension',
-    'SupportedOutputExtension',
+    'SupportedResultExtension',
 ]
