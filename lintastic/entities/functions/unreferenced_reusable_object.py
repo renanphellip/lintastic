@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from lintastic.enums import CoreFunction
+from lintastic.enums.core_function import CoreFunction
 
 
 class UnreferencedReusableObjectFunctionOptions(BaseModel):

@@ -2,8 +2,8 @@ import os
 from enum import Enum
 from typing import Literal
 
-from lintastic.enums import LogMessage
-from lintastic.utils import Logger
+from lintastic.enums.log_message import LogMessage
+from lintastic.utils.logger import Logger
 
 
 class FileValidator:

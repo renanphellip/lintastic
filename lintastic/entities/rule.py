@@ -2,7 +2,7 @@ from typing import List, Union
 
 from pydantic import BaseModel
 
-from lintastic.enums import Severity
+from lintastic.enums.severity import Severity
 
 from .functions import (
     AlphabeticalRuleThen,

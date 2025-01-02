@@ -1,13 +1,15 @@
 from rich.markup import escape
 
 from lintastic.entities.diagnostic import DiagnosticCollection
-from lintastic.enums import LogMessage
-from lintastic.functions import (
+from lintastic.enums.log_message import LogMessage
+from lintastic.functions.function_importer_service import (
     FunctionImporterService,
 )
-from lintastic.ruleset import Ruleset
-from lintastic.utils import DocumentDataLoader, Logger
-from lintastic.validators import FunctionValidator, RuleProcessor
+from lintastic.ruleset.ruleset import Ruleset
+from lintastic.utils.document_data_loader import DocumentDataLoader
+from lintastic.utils.logger import Logger
+from lintastic.validators.function_validator import FunctionValidator
+from lintastic.validators.rule_processor import RuleProcessor
 
 
 class DocumentValidator:

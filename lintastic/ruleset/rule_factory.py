@@ -3,15 +3,14 @@ from typing import List, Union
 from pydantic import ValidationError
 from rich.markup import escape
 
-from lintastic.entities import Rule, SpectralRule, SpectralRuleThen
-from lintastic.entities.functions import (
-    DefinedRuleThen,
-    FalsyRuleThen,
-    TruthyRuleThen,
-    UndefinedRuleThen,
-)
-from lintastic.enums import LogMessage
-from lintastic.utils import Logger
+from lintastic.entities.functions.defined import DefinedRuleThen
+from lintastic.entities.functions.falsy import FalsyRuleThen
+from lintastic.entities.functions.truthy import TruthyRuleThen
+from lintastic.entities.functions.undefined import UndefinedRuleThen
+from lintastic.entities.rule import Rule
+from lintastic.entities.spectral import SpectralRule, SpectralRuleThen
+from lintastic.enums.log_message import LogMessage
+from lintastic.utils.logger import Logger
 
 from .function_strategy_mapper import FunctionStrategyMapper
 

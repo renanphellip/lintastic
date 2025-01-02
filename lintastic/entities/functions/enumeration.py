@@ -2,7 +2,7 @@ from typing import List, Union
 
 from pydantic import BaseModel
 
-from lintastic.enums import CoreFunction
+from lintastic.enums.core_function import CoreFunction
 
 
 class EnumerationFunctionOptions(BaseModel):

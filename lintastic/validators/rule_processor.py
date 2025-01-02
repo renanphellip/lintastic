@@ -21,7 +21,7 @@ from lintastic.entities.functions import (
 )
 from lintastic.entities.jsonpath import JSONPathMatch
 from lintastic.entities.rule import Rule
-from lintastic.enums import LogMessage
+from lintastic.enums.log_message import LogMessage
 from lintastic.utils.logger import Logger
 from lintastic.validators.jsonpath_validator import JSONPathValidator
 
@@ -43,9 +43,7 @@ class RuleProcessor:
         return results
 
     @staticmethod
-    def get_field_name(
-        jsonpath_match: JSONPathMatch, rule_then: Any
-    ) -> str:
+    def get_field_name(jsonpath_match: JSONPathMatch, rule_then: Any) -> str:
         return getattr(
             rule_then, 'field', jsonpath_match.context.split('.')[-1]
         )

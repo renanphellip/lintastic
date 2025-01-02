@@ -1,12 +1,9 @@
 from lintastic.enums import Severity
 
+from .diagnostic import Diagnostic, DiagnosticCollection, DiagnosticSummary
+from .jsonpath import JSONPathMatch
 from .rule import Rule
 from .spectral import SpectralRule, SpectralRuleset, SpectralRuleThen
-from .validator import (
-    ValidationResult,
-    ValidationResultCollection,
-    ValidationSummary,
-)
 
 __all__ = [
     'Rule',
@@ -14,7 +11,8 @@ __all__ = [
     'SpectralRuleset',
     'SpectralRuleThen',
     'SpectralRule',
-    'ValidationResult',
-    'ValidationResultCollection',
-    'ValidationSummary',
+    'JSONPathMatch',
+    'Diagnostic',
+    'DiagnosticCollection',
+    'DiagnosticSummary',
 ]

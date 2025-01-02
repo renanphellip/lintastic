@@ -2,7 +2,7 @@ from typing import Any, Dict
 
 from pydantic import BaseModel, Field
 
-from lintastic.enums import CoreFunction
+from lintastic.enums.core_function import CoreFunction
 from lintastic.enums.json_schema import JSONSchemaDraft
 
 

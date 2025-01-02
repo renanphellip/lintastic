@@ -1,4 +1,5 @@
-from lintastic.enums import CoreFunction, LogMessage
+from lintastic.enums.core_function import CoreFunction
+from lintastic.enums.log_message import LogMessage
 
 from .function_strategies import (
     AlphabeticalFunctionStrategy,

@@ -1,9 +1,10 @@
 import os
 from typing import Any, Dict
 
-from lintastic.enums import LogMessage
-from lintastic.readers.file_reader_factory import FileReaderFactory
+from lintastic.enums.log_message import LogMessage
 from lintastic.utils.logger import Logger
+
+from .file_reader_factory import FileReaderFactory
 
 
 class FileReaderService:

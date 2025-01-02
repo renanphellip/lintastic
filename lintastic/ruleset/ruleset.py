@@ -3,10 +3,11 @@ from typing import List
 
 from pydantic import ValidationError
 
-from lintastic.entities import Rule, SpectralRuleset
-from lintastic.enums import LogMessage
-from lintastic.readers import FileReaderService
-from lintastic.utils import Logger
+from lintastic.entities.rule import Rule
+from lintastic.entities.spectral import SpectralRuleset
+from lintastic.enums.log_message import LogMessage
+from lintastic.readers.file_reader_service import FileReaderService
+from lintastic.utils.logger import Logger
 
 from .function_strategy_mapper import FunctionStrategyMapper
 from .rule_factory import RuleFactory

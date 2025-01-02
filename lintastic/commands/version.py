@@ -1,4 +1,4 @@
-from lintastic.enums import LogMessage
+from lintastic.enums.log_message import LogMessage
 from lintastic.readers.file_reader_service import FileReaderService
 from lintastic.utils.logger import Logger
 

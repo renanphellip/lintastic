@@ -54,6 +54,11 @@ class LogMessage(str, Enum):
     RUNNING_FUNCTION = (
         'Running "{function_name}" function for given: {jsonpath_match}'
     )
+    FAIL_TO_WRITE_FILE_WITH_INVALID_TYPE = (
+        'Failed to write "{output_path}". '
+        'Data must be an instance of "DiagnosticCollection".'
+    )
+    RESULTS_EXPORTED = 'Results exported to: {results_path}'
 
     def __str__(self):
         return self.value

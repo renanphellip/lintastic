@@ -1,9 +1,10 @@
 import os
 from typing import Any
 
-from lintastic.enums import LogMessage
+from lintastic.enums.log_message import LogMessage
 from lintastic.utils.logger import Logger
-from lintastic.writers.file_writer_factory import FileWriterFactory
+
+from .file_writer_factory import FileWriterFactory
 
 
 class FileWriterService:

@@ -2,7 +2,7 @@ from typing import Any, Dict, List, Union
 
 from pydantic import BaseModel
 
-from lintastic.enums import Severity
+from lintastic.enums.severity import Severity
 
 
 class SpectralRuleThen(BaseModel):

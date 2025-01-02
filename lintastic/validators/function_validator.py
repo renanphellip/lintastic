@@ -1,7 +1,7 @@
 from typing import Dict, List
 
 from lintastic.entities.rule import Rule
-from lintastic.enums import LogMessage
+from lintastic.enums.log_message import LogMessage
 from lintastic.utils.logger import Logger
 
 

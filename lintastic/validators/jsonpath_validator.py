@@ -4,7 +4,7 @@ from jsonpath_ng import parse
 from rich.markup import escape
 
 from lintastic.entities.jsonpath import JSONPathMatch
-from lintastic.enums import LogMessage
+from lintastic.enums.log_message import LogMessage
 from lintastic.utils.logger import Logger
 
 

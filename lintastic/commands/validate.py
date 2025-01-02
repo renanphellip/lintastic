@@ -4,14 +4,16 @@ from typing import Optional
 import typer
 from typing_extensions import Annotated
 
-from lintastic.enums import (
-    LogMessage,
-    OutputFormat,
+from lintastic.enums.log_message import LogMessage
+from lintastic.enums.output_format import OutputFormat
+from lintastic.enums.supported_document_extension import (
     SupportedDocumentExtension,
-    SupportedResultExtension,
 )
-from lintastic.utils import FileValidator, Logger
+from lintastic.enums.supported_result_extension import SupportedResultExtension
+from lintastic.utils.file_validator import FileValidator
+from lintastic.utils.logger import Logger
 from lintastic.validators.document_validator import DocumentValidator
+from lintastic.writers.file_writer_service import FileWriterService
 
 
 def validate(
@@ -82,6 +84,13 @@ def validate(
     document_validator = DocumentValidator(
         document_path, ruleset_path, 'custom_functions', verbose
     )
-    document_validator.validate()
+    diagnostic_collection = document_validator.validate()
 
     # Output
+    file_writer_service = FileWriterService(verbose)
+    absolute_results_path = file_writer_service.write_file(
+        results_path, diagnostic_collection
+    )
+    Logger.success(
+        LogMessage.RESULTS_EXPORTED.format(results_path=absolute_results_path)
+    )

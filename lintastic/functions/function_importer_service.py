@@ -4,7 +4,7 @@ from pathlib import Path
 from types import ModuleType
 from typing import Any, Dict
 
-from lintastic.enums import LogMessage
+from lintastic.enums.log_message import LogMessage
 from lintastic.utils.logger import Logger
 
 

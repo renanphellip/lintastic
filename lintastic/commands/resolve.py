@@ -3,12 +3,14 @@ import json
 import typer
 from typing_extensions import Annotated
 
-from lintastic.enums import LogMessage, SupportedDocumentExtension
-from lintastic.resolver import (
-    DocumentResolveHandler,
+from lintastic.enums.log_message import LogMessage
+from lintastic.enums.supported_document_extension import (
+    SupportedDocumentExtension,
 )
-from lintastic.utils import FileValidator, Logger
-from lintastic.writers import FileWriterService
+from lintastic.resolver.document_resolve_handler import DocumentResolveHandler
+from lintastic.utils.file_validator import FileValidator
+from lintastic.utils.logger import Logger
+from lintastic.writers.file_writer_service import FileWriterService
 
 
 def resolve(
