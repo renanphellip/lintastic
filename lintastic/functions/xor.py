@@ -1,22 +1,18 @@
-from typing import Any, Dict, List
+from typing import List
 
-from lintastic.entities.functions.xor import XORFunctionOptions
+from lintastic.entities.functions.inputs import FunctionInputs
 
 
 def xor(
-    context: str,
-    target_value: Dict[str, Any],
-    function_options: XORFunctionOptions,
-    verbose: bool,
-    rule_name: str,
+    inputs: FunctionInputs
 ) -> List[str]:
-    properties = function_options.properties
+    properties = inputs.options.properties
     properties_found = sum(
-        1 for property in properties if property in target_value
+        1 for property in properties if property in inputs.target_value
     )
     if properties_found != 1:
         return [
-            f'{context} must have only one of these properties defined: '
+            f'{inputs.context} must have only one of these properties defined: '
             + properties
         ]
     return []

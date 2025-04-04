@@ -1,20 +1,13 @@
-from typing import Any, Dict, List
+from typing import List
 
-from lintastic.entities.functions.alphabetical import (
-    AlphabeticalFunctionOptions,
-)
+from lintastic.entities.functions.inputs import FunctionInputs
 
 
 def alphabetical(
-    context: str,
-    target_value: Dict[str, Any],
-    function_options: AlphabeticalFunctionOptions,
-    field: str,
-    verbose: bool,
-    rule_name: str,
+    inputs: FunctionInputs
 ) -> List[str]:
-    field_target_value = target_value.get(field)
-    keyed_by = function_options.keyed_by
+    field_target_value = inputs.target_value.get(inputs.field)
+    keyed_by = inputs.options.keyed_by
     if isinstance(field_target_value, list) and keyed_by:
         keys = [
             item.get(keyed_by)
@@ -24,7 +17,7 @@ def alphabetical(
         if keys != sorted(keys):
             return [
                 (
-                    f'"{context}" should have alphabetical "{field}" '
+                    f'"{inputs.context}" should have alphabetical "{inputs.field}" '
                     f'by {keyed_by}.'
                 )
             ]

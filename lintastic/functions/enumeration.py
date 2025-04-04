@@ -1,21 +1,14 @@
 from typing import Any, Dict, List
 
-from lintastic.entities.functions.enumeration import (
-    EnumerationFunctionOptions,
-)
+from lintastic.entities.functions.inputs import FunctionInputs
 
 
 def enumeration(
-    context: str,
-    target_value: Dict[str, Any],
-    function_options: EnumerationFunctionOptions,
-    field: str,
-    verbose: bool,
-    rule_name: str,
+    inputs: FunctionInputs
 ) -> List[str]:
-    possible_values = function_options.values
-    field_target_value = target_value.get(field)
+    possible_values = inputs.options.values
+    field_target_value = inputs.target_value.get(inputs.field)
     if isinstance(possible_values, list):
         if field_target_value not in possible_values:
-            return [f'{context}.{field} must be: {possible_values}']
+            return [f'{inputs.context}.{inputs.field} must be: {possible_values}']
     return []

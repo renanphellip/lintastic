@@ -30,13 +30,13 @@ class LogMessage(str, Enum):
     EMPTY_FUNCTION = 'The function property must not be empty.'
     FAIL_TO_CREATE_RULE = 'Rule name: {rule_name}\nException: {error}'
     INIT_NOT_FOUND = (
-        'The file "__init__.py" was not found in: {custom_functions_path}'
+        'The file "__init__.py" was not found in: {functions_path}'
     )
     FUNCTION_ALREADY_EXISTS = (
         'The core function "{function_name}" already '
         'exists. The custom function with the same name will not be used.'
     )
-    CUSTOM_FUNCTION_IMPORTED = 'Imported custom function: {function_name}'
+    FUNCTION_IMPORTED = 'Imported function: {function_name}'
     RULESET_FUNCTIONS_NOT_FOUND = (
         'The following ruleset functions was not found: {functions}'
     )

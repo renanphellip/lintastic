@@ -1,14 +1,12 @@
-from typing import Any, Dict, List
+from typing import List
+
+from lintastic.entities.functions.inputs import FunctionInputs
 
 
 def truthy(
-    context: str,
-    target_value: Dict[str, Any],
-    field: str,
-    verbose: bool,
-    rule_name: str,
+    inputs: FunctionInputs
 ) -> List[str]:
     falsy_values = (False, '', 0, None)
-    if target_value.get(field) in falsy_values:
-        return [f'{context}.{field} must not be: empty string, 0, false, null']
+    if inputs.target_value.get(inputs.field) in falsy_values:
+        return [f'{inputs.context}.{inputs.field} must not be: empty string, 0, false, null']
     return []

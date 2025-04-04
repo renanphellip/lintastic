@@ -1,4 +1,4 @@
-from typing import Any, Dict, List
+from typing import List
 
 from jsonschema import (
     Draft4Validator,
@@ -9,21 +9,16 @@ from jsonschema import (
     validate,
 )
 
-from lintastic.entities.functions.schema import SchemaFunctionOptions
+from lintastic.entities.functions.inputs import FunctionInputs
 
 
 def schema(
-    context: str,
-    target_value: Dict[str, Any],
-    function_options: SchemaFunctionOptions,
-    field: str,
-    verbose: bool,
-    rule_name: str,
+    inputs: FunctionInputs
 ) -> List[str]:
     try:
-        expected_schema = function_options.schema_definition
-        dialect = function_options.dialect
-        field_target_value = target_value.get(field)
+        expected_schema = inputs.options.schema_definition
+        dialect = inputs.options.dialect
+        field_target_value = inputs.target_value.get(inputs.field)
 
         validator_classes = {
             'draft4': Draft4Validator,
@@ -47,13 +42,13 @@ def schema(
                     raise Exception(exceptions)
         return []
     except Exception as error:
-        return_all_errors = function_options.all_errors
+        return_all_errors = inputs.options.all_errors
         if return_all_errors:
             return [
-                f'{context}.{field} does not meet the expected schema: '
+                f'{inputs.context}.{inputs.field} does not meet the expected schema: '
                 + error
             ]
         return [
-            f'{context}.{field} does not meet the expected schema: '
+            f'{inputs.context}.{inputs.field} does not meet the expected schema: '
             + expected_schema
         ]

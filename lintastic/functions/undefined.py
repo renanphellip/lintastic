@@ -1,13 +1,11 @@
-from typing import Any, Dict, List
+from typing import List
+
+from lintastic.entities.functions.inputs import FunctionInputs
 
 
 def undefined(
-    context: str,
-    target_value: Dict[str, Any],
-    field: str,
-    verbose: bool,
-    rule_name: str,
+    inputs: FunctionInputs
 ) -> List[str]:
-    if target_value.get(field) is not None:
-        return [f'{context}.{field} must be null.']
+    if inputs.target_value.get(inputs.field) is not None:
+        return [f'{inputs.context}.{inputs.field} must be null.']
     return []

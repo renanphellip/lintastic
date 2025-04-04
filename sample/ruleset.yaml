@@ -12,26 +12,29 @@ rules:
   openapi-tags-alphabetical:
     description: OpenAPI object should have alphabetical `tags`.
     recommended: true
+    documentation:
+      - https://www.algum-link-grande.com.br/doc/openapi-tags-alphabetical
+      - https://www.algum-outro-link-grande.com.br/doc/openapi-tags-alphabetical
     given: "$"
     then:
       field: tags
       function: alphabetical
       functionOptions:
         keyedBy: name
-  # truthy-and-falsy:
-  #   description: Contact object must have "name", "url", and "email".
-  #   message: '{{error}}'
-  #   given:
-  #     - $.info.contact
-  #     - $.info.license
-  #   severity: error
-  #   then:
-  #     - field: name
-  #       function: truthy
-  #     - field: url
-  #       function: truthy
-  #     - field: email
-  #       function: falsy
+  truthy-and-falsy:
+    description: Contact object must have "name", "url", and "email".
+    message: '{{error}}'
+    given:
+      - $.info.contact
+      - $.info.license
+    severity: error
+    then:
+      - field: name
+        function: truthy
+      - field: url
+        function: truthy
+      - field: email
+        function: falsy
   # whitelisted-tags:
   #   description: Pick from a very restrictive set of tags.
   #   given: "$.paths.*"

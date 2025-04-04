@@ -87,10 +87,11 @@ def validate(
     diagnostic_collection = document_validator.validate()
 
     # Output
-    file_writer_service = FileWriterService(verbose)
-    absolute_results_path = file_writer_service.write_file(
-        results_path, diagnostic_collection
-    )
-    Logger.success(
-        LogMessage.RESULTS_EXPORTED.format(results_path=absolute_results_path)
-    )
+    if results_path:
+        file_writer_service = FileWriterService(verbose)
+        absolute_results_path = file_writer_service.write_file(
+            results_path, diagnostic_collection
+        )
+        Logger.success(
+            LogMessage.RESULTS_EXPORTED.format(results_path=absolute_results_path)
+        )

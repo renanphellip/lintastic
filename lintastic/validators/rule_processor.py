@@ -23,11 +23,13 @@ from lintastic.entities.jsonpath import JSONPathMatch
 from lintastic.entities.rule import Rule
 from lintastic.enums.log_message import LogMessage
 from lintastic.utils.logger import Logger
+from lintastic.validators.inputs_strategy_mapper import InputsStrategyMapper
 from lintastic.validators.jsonpath_validator import JSONPathValidator
 
 
 class RuleProcessor:
-    def __init__(self, verbose=False):
+    def __init__(self, globals: Dict[str, Any], verbose=False):
+        self.globals = globals
         self.verbose = verbose
 
     def get_jsonpath_matches(
@@ -41,12 +43,6 @@ class RuleProcessor:
                 ).validate()
             )
         return results
-
-    @staticmethod
-    def get_field_name(jsonpath_match: JSONPathMatch, rule_then: Any) -> str:
-        return getattr(
-            rule_then, 'field', jsonpath_match.context.split('.')[-1]
-        )
 
     def run_function(
         self,
@@ -69,7 +65,6 @@ class RuleProcessor:
         ],
         rule_function: Callable,
         jsonpath_match: JSONPathMatch,
-        field: str,
     ) -> Union[Diagnostic, None]:
         if self.verbose:
             Logger.debug(
@@ -78,14 +73,17 @@ class RuleProcessor:
                     jsonpath_match=escape(str(jsonpath_match)),
                 )
             )
-        function_messages = rule_function(
-            jsonpath_match.context,
-            jsonpath_match.target_value,
-            rule_then.function_options,
-            field,
-            self.verbose,
+        
+        inputs_strategy_mapper = InputsStrategyMapper()
+        inputs_strategy = inputs_strategy_mapper.get_strategy(rule_then.function)
+        function_inputs = inputs_strategy.get_inputs(
             rule.name,
+            rule.then,
+            jsonpath_match,
+            self.verbose
         )
+        
+        function_messages = rule_function(function_inputs)
         if function_messages:
             return Diagnostic(
                 rule.name,
@@ -105,10 +103,9 @@ class RuleProcessor:
                 rule.then if isinstance(rule.then, list) else [rule.then]
             )
             for rule_then in then_statements:
-                field = self.get_field_name(jsonpath_match, rule_then)
-                rule_function = globals().get(rule_then.function)
+                rule_function = self.globals.get(rule_then.function)
                 diagnostic = self.run_function(
-                    rule, rule_then, rule_function, jsonpath_match, field
+                    rule, rule_then, rule_function, jsonpath_match
                 )
                 if diagnostic:
                     diagnostics.append(diagnostic)

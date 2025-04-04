@@ -19,24 +19,24 @@ class MdFileWriter:
             )
         with open(absolute_output_path, 'w', encoding='utf-8') as file:
             if diagnostic_collection.diagnostics:
+                file.write('## Diagnostics\n\n')
                 file.write(
-                    '| Rule | Severity | Context | Messages | Documentations |'
+                    '| Rule | Severity | Context | Messages | Documentations |\n'
                 )
-                file.write('| - | - | - | - | - |')
+                file.write('| - | - | - | - | - |\n')
                 for diagnostic in diagnostic_collection.diagnostics:
                     diagnostic_messages = ''.join(
-                        f'- {message}\n' for message in diagnostic.messages
+                        f'- {message}<br>' for message in diagnostic.messages
                     )
                     diagnostic_docs = ''.join(
-                        f'- {doc}\n' for doc in diagnostic.documentations
+                        f'- {doc}<br>' for doc in diagnostic.documentations
                     )
                     file.write(
                         f'| {diagnostic.rule} | {diagnostic.severity} | '
                         f'{diagnostic.context} | {diagnostic_messages} | '
-                        f'{diagnostic_docs} |'
+                        f'{diagnostic_docs} |\n'
                     )
-                    file.write('\n')
-            file.write('**Summary:**\n')
+            file.write('\n### Summary\n\n')
             file.write(
                 '- Total errors: '
                 + diagnostic_collection.summary.total_errors

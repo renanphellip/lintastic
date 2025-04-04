@@ -9,45 +9,45 @@ from lintastic.utils.logger import Logger
 
 
 class FunctionImporterService:
-    def __init__(self, custom_functions_path: str, verbose=False):
-        self.custom_functions_path = custom_functions_path
+    def __init__(self, functions_path: str, verbose=False, globals: Dict[str, Any]=globals()):
+        self.functions_path = functions_path
         self.verbose = verbose
+        self.globals = globals
 
     def __register_functions(self, module: ModuleType) -> Dict[str, Any]:
         imported_functions = {}
         for name, obj in vars(module).items():
             if not name.startswith('_'):
-                if name in globals():
+                if name in self.globals:
                     Logger.warning(
                         LogMessage.FUNCTION_ALREADY_EXISTS.format(
                             function_name=name
                         )
                     )
                 else:
-                    globals()[name] = obj
                     imported_functions[name] = obj
                     if self.verbose:
                         Logger.debug(
-                            LogMessage.CUSTOM_FUNCTION_IMPORTED.format(
+                            LogMessage.FUNCTION_IMPORTED.format(
                                 function_name=name
                             )
                         )
         return imported_functions
 
     def import_functions(self) -> Dict[str, Any]:
-        custom_functions_path = (
-            Path(self.custom_functions_path) / '__init__.py'
+        functions_path = (
+            Path(self.functions_path) / '__init__.py'
         )
-        if not custom_functions_path.exists():
+        if not functions_path.exists():
             Logger.error(
                 LogMessage.INIT_NOT_FOUND.format(
-                    custom_functions_path=self.custom_functions_path
+                    functions_path=self.functions_path
                 )
             )
 
-        module_name = 'custom_functions'
+        module_name = 'functions'
         spec = importlib.util.spec_from_file_location(
-            module_name, custom_functions_path
+            module_name, functions_path
         )
         module = importlib.util.module_from_spec(spec)
         sys.modules[module_name] = module

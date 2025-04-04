@@ -1,7 +1,7 @@
 import re
 from typing import List
 
-from lintastic.entities.functions.casing import CasingFunctionOptions
+from lintastic.entities.functions.inputs import FunctionInputs
 
 
 def _is_flat_case(
@@ -237,60 +237,56 @@ def _is_macro_case(
 
 
 def casing(
-    context: str,
-    target_value: str,
-    function_options: CasingFunctionOptions,
-    verbose: bool,
-    rule_name: str,
+    inputs: FunctionInputs
 ) -> List[str]:
-    disallow_digits = function_options.disallow_digits
-    separator_char = function_options.separator_char
-    separator_allow_leading = function_options.separator_allow_leading
-    casing_type = function_options.type
+    disallow_digits = inputs.options.disallow_digits
+    separator_char = inputs.options.separator_char
+    separator_allow_leading = inputs.options.separator_allow_leading
+    casing_type = inputs.options.type
     casing_types = {
         'flat': _is_flat_case(
-            target_value,
+            inputs.target_value,
             disallow_digits,
             separator_char,
             separator_allow_leading,
         ),
         'camel': _is_camel_case(
-            target_value,
+            inputs.target_value,
             disallow_digits,
             separator_char,
             separator_allow_leading,
         ),
         'pascal': _is_pascal_case(
-            target_value,
+            inputs.target_value,
             disallow_digits,
             separator_char,
             separator_allow_leading,
         ),
         'kebab': _is_kebab_case(
-            target_value,
+            inputs.target_value,
             disallow_digits,
             separator_char,
             separator_allow_leading,
         ),
         'cobol': _is_cobol_case(
-            target_value,
+            inputs.target_value,
             disallow_digits,
             separator_char,
             separator_allow_leading,
         ),
         'snake': _is_snake_case(
-            target_value,
+            inputs.target_value,
             disallow_digits,
             separator_char,
             separator_allow_leading,
         ),
         'macro': _is_macro_case(
-            target_value,
+            inputs.target_value,
             disallow_digits,
             separator_char,
             separator_allow_leading,
         ),
     }
     if casing_types.get(casing_type) is False:
-        return [f'{context} must be {casing_type} case.']
+        return [f'{inputs.context} must be {casing_type} case.']
     return []

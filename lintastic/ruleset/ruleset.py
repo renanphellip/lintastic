@@ -19,7 +19,7 @@ class Ruleset:
         self.verbose = verbose
         self.function_strategy_mapper = FunctionStrategyMapper()
         self.rule_factory = RuleFactory(self.function_strategy_mapper)
-        self.file_reader_service = FileReaderService(self.verbose)
+        self.file_reader_service = FileReaderService(verbose)
         self.ruleset = self.__read_and_validate_ruleset()
 
     def __read_and_validate_ruleset(self) -> SpectralRuleset:

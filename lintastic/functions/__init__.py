@@ -3,7 +3,6 @@ from .casing import casing
 from .defined import defined
 from .enumeration import enumeration
 from .falsy import falsy
-from .function_importer_service import FunctionImporterService
 from .length import length
 from .pattern import pattern
 from .schema import schema
@@ -19,7 +18,6 @@ __all__ = [
     'defined',
     'enumeration',
     'falsy',
-    'FunctionImporterService',
     'length',
     'pattern',
     'schema',

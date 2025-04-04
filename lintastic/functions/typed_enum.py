@@ -1,19 +1,13 @@
-from typing import List, Union
+from typing import List
 
-from lintastic.entities.functions.typed_enum import (
-    TypedEnumFunctionOptions,
-)
+from lintastic.entities.functions.inputs import FunctionInputs
 
 
 def typedEnum(
-    context: str,
-    target_value: Union[str, int, float, bool],
-    function_options: TypedEnumFunctionOptions,
-    verbose: bool,
-    rule_name: str,
+    inputs: FunctionInputs
 ) -> List[str]:
-    opt_enum = function_options.enum
-    opt_type = function_options.type
+    opt_enum = inputs.options.enum
+    opt_type = inputs.options.type
     data_types = {
         'string': str,
         'integer': int,
@@ -28,11 +22,11 @@ def typedEnum(
                     messages.append(
                         f'The enum value {item} must be of type {opt_type}.'
                     )
-            if not isinstance(target_value, data_types.get(opt_type)):
+            if not isinstance(inputs.target_value, data_types.get(opt_type)):
                 messages.append(
-                    f'The value {target_value} in {context} must be '
+                    f'The value {inputs.target_value} in {inputs.context} must be '
                     f'of type {opt_type}.'
                 )
-        if target_value not in opt_enum:
-            messages.append(f'{context} must be: {opt_enum}')
+        if inputs.target_value not in opt_enum:
+            messages.append(f'{inputs.context} must be: {opt_enum}')
     return messages

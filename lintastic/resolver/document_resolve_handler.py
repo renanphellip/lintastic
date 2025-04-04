@@ -15,7 +15,7 @@ class DocumentResolveHandler:
         verbose=False,
     ):
         self.verbose = verbose
-        self.file_reader_service = FileReaderService(self.verbose)
+        self.file_reader_service = FileReaderService(verbose)
         self.ref_resolve_service = RefResolveService(
             self.file_reader_service, verbose
         )

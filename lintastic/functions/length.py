@@ -1,6 +1,6 @@
-from typing import Any, Dict, List, Union
+from typing import Any, List, Union
 
-from lintastic.entities.functions.length import LengthFunctionOptions
+from lintastic.entities.functions.inputs import FunctionInputs
 
 
 def _check_max_length(value: Any, max_length: Union[int, float]) -> bool:
@@ -24,25 +24,20 @@ def _check_min_length(value: Any, min_length: Union[int, float]) -> bool:
 
 
 def length(
-    context: str,
-    target_value: Dict[str, Any],
-    function_options: LengthFunctionOptions,
-    field: str,
-    verbose: bool,
-    rule_name: str,
+    inputs: FunctionInputs
 ) -> List[str]:
-    min_length = function_options.min
-    max_length = function_options.max
+    min_length = inputs.options.min
+    max_length = inputs.options.max
     has_min_length = min_length != -1
     has_max_length = max_length != -1
-    field_target_value = target_value.get(field)
+    field_target_value = inputs.target_value.get(inputs.field)
     min_length_failed = not _check_min_length(field_target_value, min_length)
     max_length_failed = not _check_max_length(field_target_value, max_length)
 
     messages = []
 
     if has_min_length and min_length_failed:
-        message = f'The {field} value in {context}'
+        message = f'The {inputs.field} value in {inputs.context}'
         if isinstance(field_target_value, (str, list, dict)):
             message += (
                 f' must have a length greater than or equal to {min_length}.'
@@ -54,7 +49,7 @@ def length(
         messages.append(message)
 
     if has_max_length and max_length_failed:
-        message = f'The {field} value in {context}'
+        message = f'The {inputs.field} value in {inputs.context}'
         if isinstance(field_target_value, (str, list, dict)):
             message += (
                 f' must have a length less than or equal to {max_length}.'
