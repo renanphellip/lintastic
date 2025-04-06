@@ -26,4 +26,3 @@ class CasingFunctionInputs:
     target_value: Any
     options: CasingFunctionOptions
     field = None
-    verbose: bool = False

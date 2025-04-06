@@ -13,7 +13,6 @@ class LengthInputsStrategy:
         rule_name: str,
         rule_then: LengthRuleThen,
         jsonpath_match: JSONPathMatch,
-        verbose: bool,
     ) -> LengthFunctionInputs:
         field = get_field_name_from_jsonpath_context(
             jsonpath_match.context, rule_then
@@ -24,5 +23,4 @@ class LengthInputsStrategy:
             target_value=jsonpath_match.target_value,
             options=rule_then.function_options,
             field=field,
-            verbose=verbose,
         )

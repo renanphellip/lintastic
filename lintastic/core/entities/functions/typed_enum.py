@@ -23,4 +23,3 @@ class TypedEnumFunctionInputs:
     target_value: Any
     options: TypedEnumFunctionOptions
     field = None
-    verbose: bool = False

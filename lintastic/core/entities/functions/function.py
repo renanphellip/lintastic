@@ -33,4 +33,3 @@ class FunctionInputs(Protocol):
         None,
     ] = None
     field: Union[str, None] = None
-    verbose: bool = False

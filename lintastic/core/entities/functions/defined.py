@@ -18,4 +18,3 @@ class DefinedFunctionInputs:
     target_value: Any
     options = None
     field: str
-    verbose: bool = False

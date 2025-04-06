@@ -24,7 +24,6 @@ from lintastic.core.enums.log_message import LogMessage
 from lintastic.core.functions.strategies.inputs_strategy import (
     InputsStrategyMapper,
 )
-from lintastic.core.validators.jsonpath_validator import JSONPathValidator
 from lintastic.utils.logger import Logger
 
 
@@ -33,17 +32,22 @@ class RuleProcessor:
         self.globals = globals
         self.verbose = verbose
 
-    def get_jsonpath_matches(
-        self, rule: Rule, document_data: Dict[str, Any]
-    ) -> List[JSONPathMatch]:
-        results = []
-        for jsonpath in rule.given:
-            results.extend(
-                JSONPathValidator(
-                    jsonpath, document_data, self.verbose
-                ).validate()
+    def process(
+        self, rule: Rule, jsonpath_matches: List[JSONPathMatch]
+    ) -> List[Diagnostic]:
+        diagnostics: List[Diagnostic] = []
+        for jsonpath_match in jsonpath_matches:
+            then_statements = (
+                rule.then if isinstance(rule.then, list) else [rule.then]
             )
-        return results
+            for rule_then in then_statements:
+                rule_function = self.globals.get(rule_then.function)
+                diagnostic = self.run_function(
+                    rule, rule_then, rule_function, jsonpath_match
+                )
+                if diagnostic:
+                    diagnostics.append(diagnostic)
+        return diagnostics
 
     def run_function(
         self,
@@ -72,7 +76,7 @@ class RuleProcessor:
             rule_then.function
         )
         function_inputs = inputs_strategy.get_inputs(
-            rule.name, rule_then, jsonpath_match, self.verbose
+            rule.name, rule_then, jsonpath_match
         )
 
         if self.verbose:
@@ -102,20 +106,3 @@ class RuleProcessor:
                 rule.documentation,
             )
         return None
-
-    def process(
-        self, rule: Rule, jsonpath_matches: List[JSONPathMatch]
-    ) -> List[Diagnostic]:
-        diagnostics: List[Diagnostic] = []
-        for jsonpath_match in jsonpath_matches:
-            then_statements = (
-                rule.then if isinstance(rule.then, list) else [rule.then]
-            )
-            for rule_then in then_statements:
-                rule_function = self.globals.get(rule_then.function)
-                diagnostic = self.run_function(
-                    rule, rule_then, rule_function, jsonpath_match
-                )
-                if diagnostic:
-                    diagnostics.append(diagnostic)
-        return diagnostics

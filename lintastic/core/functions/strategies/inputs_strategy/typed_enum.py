@@ -12,12 +12,10 @@ class TypedEnumInputsStrategy:
         rule_name: str,
         rule_then: TypedEnumRuleThen,
         jsonpath_match: JSONPathMatch,
-        verbose: bool,
     ) -> TypedEnumFunctionInputs:
         return TypedEnumFunctionInputs(
             rule_name=rule_name,
             context=jsonpath_match.context,
             target_value=jsonpath_match.target_value,
             options=rule_then.function_options,
-            verbose=verbose,
         )

@@ -24,4 +24,3 @@ class LengthFunctionInputs:
     target_value: Any
     options: LengthFunctionOptions
     field: str
-    verbose: bool = False

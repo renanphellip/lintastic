@@ -4,15 +4,16 @@ from rich.markup import escape
 
 from lintastic.core.entities.diagnostic import Diagnostic, DiagnosticCollection
 from lintastic.core.enums.log_message import LogMessage
-from lintastic.core.functions.core.function_importer_service import (
+from lintastic.core.functions.function_importer_service import (
     FunctionImporterService,
 )
+from lintastic.core.processors.jsonpath_processor import JSONPathProcessor
+from lintastic.core.processors.rule_processor import RuleProcessor
 from lintastic.core.resolver.document_resolve_handler import (
     DocumentResolveHandler,
 )
 from lintastic.core.ruleset.ruleset import Ruleset
 from lintastic.core.validators.function_validator import FunctionValidator
-from lintastic.core.validators.rule_processor import RuleProcessor
 from lintastic.io.readers.file_reader_service import FileReaderService
 from lintastic.utils.logger import Logger
 
@@ -36,6 +37,7 @@ class DocumentValidator:
             imported_functions = self.__import_functions()
             rules = ruleset.get_rules()
             FunctionValidator(rules, imported_functions).validate_functions()
+
             rule_processor = RuleProcessor(globals(), self.verbose)
 
             resolve_refs = any(rule.resolved for rule in rules)
@@ -46,8 +48,8 @@ class DocumentValidator:
                 Logger.info(
                     LogMessage.PROCESSING_RULE.format(rule_name=rule.name)
                 )
-                jsonpath_matches = rule_processor.get_jsonpath_matches(
-                    rule, document_data
+                jsonpath_matches = JSONPathProcessor.process(
+                    rule, document_data, self.verbose
                 )
                 diagnostics.extend(
                     rule_processor.process(rule, jsonpath_matches)

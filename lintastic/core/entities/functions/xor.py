@@ -22,4 +22,3 @@ class XORFunctionInputs:
     target_value: Any
     options: XORFunctionOptions
     field = None
-    verbose: bool = False

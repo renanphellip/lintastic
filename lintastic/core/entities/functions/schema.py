@@ -26,4 +26,3 @@ class SchemaFunctionInputs:
     target_value: Any
     options: SchemaFunctionOptions
     field: str
-    verbose: bool = False

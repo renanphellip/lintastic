@@ -22,4 +22,3 @@ class UnreferencedReusableObjectFunctionInputs:
     target_value: Any
     options: UnreferencedReusableObjectFunctionOptions
     field = None
-    verbose: bool = False

@@ -13,7 +13,6 @@ class CustomInputsStrategy:
         rule_name: str,
         rule_then: CustomRuleThen,
         jsonpath_match: JSONPathMatch,
-        verbose: bool,
     ) -> CustomFunctionInputs:
         field = get_field_name_from_jsonpath_context(
             jsonpath_match.context, rule_then
@@ -24,5 +23,4 @@ class CustomInputsStrategy:
             target_value=jsonpath_match.target_value,
             options=rule_then.function_options,
             field=field,
-            verbose=verbose,
         )

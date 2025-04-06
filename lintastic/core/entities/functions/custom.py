@@ -20,4 +20,3 @@ class CustomFunctionInputs:
         None,
     ] = None
     field: Union[str, None] = None
-    verbose: bool = False

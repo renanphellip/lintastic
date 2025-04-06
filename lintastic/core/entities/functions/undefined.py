@@ -18,4 +18,3 @@ class UndefinedFunctionInputs:
     target_value: Any
     options = None
     field: Union[str, None] = None
-    verbose: bool = False

@@ -17,7 +17,7 @@ def alphabetical(inputs: AlphabeticalFunctionInputs) -> List[str]:
         if keys != sorted(keys):
             return [
                 (
-                    f'"{inputs.context}" should have alphabetical '
+                    f'{inputs.context} should have alphabetical '
                     f'"{inputs.field}" by {keyed_by}.'
                 )
             ]

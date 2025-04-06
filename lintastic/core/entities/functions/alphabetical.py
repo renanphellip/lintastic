@@ -23,4 +23,3 @@ class AlphabeticalFunctionInputs:
     target_value: Any
     options: AlphabeticalFunctionOptions
     field: str
-    verbose: bool = False

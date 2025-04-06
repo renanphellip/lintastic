@@ -42,5 +42,4 @@ class InputsStrategy(Protocol):
             CustomRuleThen,
         ],
         jsonpath_match: JSONPathMatch,
-        verbose: bool,
     ) -> FunctionInputs: ...

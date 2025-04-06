@@ -23,4 +23,3 @@ class PatternFunctionInputs:
     target_value: Any
     options: PatternFunctionOptions
     field = None
-    verbose: bool = False

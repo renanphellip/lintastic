@@ -23,4 +23,3 @@ class EnumerationFunctionInputs:
     target_value: Any
     options: EnumerationFunctionOptions
     field: str
-    verbose: bool = False

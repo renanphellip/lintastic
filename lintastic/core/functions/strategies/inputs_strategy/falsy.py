@@ -13,7 +13,6 @@ class FalsyInputsStrategy:
         rule_name: str,
         rule_then: FalsyRuleThen,
         jsonpath_match: JSONPathMatch,
-        verbose: bool,
     ) -> FalsyFunctionInputs:
         field = get_field_name_from_jsonpath_context(
             jsonpath_match.context, rule_then
@@ -23,5 +22,4 @@ class FalsyInputsStrategy:
             context=jsonpath_match.context,
             target_value=jsonpath_match.target_value,
             field=field,
-            verbose=verbose,
         )
