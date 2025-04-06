@@ -2,7 +2,7 @@ import os
 from enum import Enum
 from typing import Literal
 
-from lintastic.enums.log_message import LogMessage
+from lintastic.core.enums.log_message import LogMessage
 from lintastic.utils.logger import Logger
 
 
