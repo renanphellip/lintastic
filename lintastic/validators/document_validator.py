@@ -46,7 +46,7 @@ class DocumentValidator:
         ).import_functions()
         for function_name, function in core_functions.items():
             globals()[function_name] = function
-        
+
         custom_functions = FunctionImporterService(
             self.custom_functions_path, self.verbose, globals()
         ).import_functions()
@@ -67,6 +67,9 @@ class DocumentValidator:
 
             diagnostics: List[Diagnostic] = []
             for rule in rules:
+                Logger.info(
+                    LogMessage.PROCESSING_RULE.format(rule_name=rule.name)
+                )
                 jsonpath_matches = rule_processor.get_jsonpath_matches(
                     rule, document_data
                 )

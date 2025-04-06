@@ -1,6 +1,5 @@
 from typing import Protocol, Union
 
-from lintastic.entities.diagnostic import Diagnostic
 from lintastic.entities.functions import (
     AlphabeticalRuleThen,
     CasingRuleThen,
@@ -19,8 +18,6 @@ from lintastic.entities.functions import (
 )
 from lintastic.entities.functions.inputs import FunctionInputs
 from lintastic.entities.jsonpath import JSONPathMatch
-from lintastic.entities.rule import Rule
-from lintastic.entities.spectral import SpectralRuleThen
 
 
 class FunctionInputsStrategy(Protocol):
@@ -45,5 +42,5 @@ class FunctionInputsStrategy(Protocol):
             CustomRuleThen,
         ],
         jsonpath_match: JSONPathMatch,
-        verbose: bool
+        verbose: bool,
     ) -> FunctionInputs: ...

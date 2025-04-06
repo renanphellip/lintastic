@@ -12,9 +12,7 @@ from jsonschema import (
 from lintastic.entities.functions.inputs import FunctionInputs
 
 
-def schema(
-    inputs: FunctionInputs
-) -> List[str]:
+def schema(inputs: FunctionInputs) -> List[str]:
     try:
         expected_schema = inputs.options.schema_definition
         dialect = inputs.options.dialect
@@ -45,10 +43,10 @@ def schema(
         return_all_errors = inputs.options.all_errors
         if return_all_errors:
             return [
-                f'{inputs.context}.{inputs.field} does not meet the expected schema: '
-                + error
+                f'{inputs.context}.{inputs.field} does not meet the expected '
+                f'schema: {error}'
             ]
         return [
-            f'{inputs.context}.{inputs.field} does not meet the expected schema: '
-            + expected_schema
+            f'{inputs.context}.{inputs.field} does not meet the expected '
+            f'schema: {expected_schema}'
         ]

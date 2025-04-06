@@ -29,9 +29,7 @@ def _ref_exists(data: Any, reusable_objects_location: str) -> bool:
     return False
 
 
-def unreferencedReusableObject(
-    inputs: FunctionInputs
-) -> List[str]:
+def unreferencedReusableObject(inputs: FunctionInputs) -> List[str]:
     reusable_objects_location = inputs.options.reusable_objects_location
     if not _ref_exists(inputs.target_value, reusable_objects_location):
         return [

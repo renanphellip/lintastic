@@ -1,3 +1,4 @@
+import json
 from typing import Any, Dict, List
 
 from jsonpath_ng import parse
@@ -41,12 +42,12 @@ class JSONPathValidator:
                 )
                 for match in pattern.find(self.document_data)
             ]
+            results_json = json.dumps([result.__dict__ for result in results])
             if self.verbose:
-                results_len = len(results)
                 Logger.debug(
-                    LogMessage.JSONPATH_RESULTS_LENGTH.format(
-                        results_len=results_len,
+                    LogMessage.JSONPATH_RESULTS.format(
                         jsonpath_pattern=self.jsonpath_pattern,
+                        jsonpath_results=results_json,
                     )
                 )
             return results

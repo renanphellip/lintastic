@@ -236,9 +236,7 @@ def _is_macro_case(
     return bool(re.match(rf'^{regex}$', input))
 
 
-def casing(
-    inputs: FunctionInputs
-) -> List[str]:
+def casing(inputs: FunctionInputs) -> List[str]:
     disallow_digits = inputs.options.disallow_digits
     separator_char = inputs.options.separator_char
     separator_allow_leading = inputs.options.separator_allow_leading

@@ -27,26 +27,34 @@ class DiagnosticCollection:
     summary: DiagnosticSummary = field(init=False)
 
     def __post_init__(self):
-        total_errors = str(sum(
-            1
-            for diagnostic in self.diagnostics
-            if diagnostic.severity == Severity.ERROR
-        ))
-        total_warnings = str(sum(
-            1
-            for diagnostic in self.diagnostics
-            if diagnostic.severity == Severity.WARN
-        ))
-        total_informations = str(sum(
-            1
-            for diagnostic in self.diagnostics
-            if diagnostic.severity == Severity.INFO
-        ))
-        total_hints = str(sum(
-            1
-            for diagnostic in self.diagnostics
-            if diagnostic.severity == Severity.HINT
-        ))
+        total_errors = str(
+            sum(
+                1
+                for diagnostic in self.diagnostics
+                if diagnostic.severity == Severity.ERROR
+            )
+        )
+        total_warnings = str(
+            sum(
+                1
+                for diagnostic in self.diagnostics
+                if diagnostic.severity == Severity.WARN
+            )
+        )
+        total_informations = str(
+            sum(
+                1
+                for diagnostic in self.diagnostics
+                if diagnostic.severity == Severity.INFO
+            )
+        )
+        total_hints = str(
+            sum(
+                1
+                for diagnostic in self.diagnostics
+                if diagnostic.severity == Severity.HINT
+            )
+        )
         self.summary = DiagnosticSummary(
             total_errors, total_warnings, total_informations, total_hints
         )

@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from typing import Any, Dict, Union
+
 from . import (
     AlphabeticalFunctionOptions,
     CasingFunctionOptions,
@@ -9,8 +10,9 @@ from . import (
     SchemaFunctionOptions,
     TypedEnumFunctionOptions,
     UnreferencedReusableObjectFunctionOptions,
-    XORFunctionOptions
+    XORFunctionOptions,
 )
+
 
 @dataclass
 class FunctionInputs:
@@ -28,7 +30,7 @@ class FunctionInputs:
         UnreferencedReusableObjectFunctionOptions,
         XORFunctionOptions,
         Dict[str, Any],
-        None
+        None,
     ] = None
     field: Union[str, None] = None
     verbose: bool = False

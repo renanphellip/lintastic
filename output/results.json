@@ -1,0 +1,58 @@
+{
+  "diagnostics": [
+    {
+      "rule": "openapi-tags-alphabetical",
+      "context": "$",
+      "severity": "warn",
+      "messages": [
+        "\"$\" should have alphabetical \"tags\" by name."
+      ],
+      "documentations": [
+        "https://www.algum-link-grande.com.br/doc/openapi-tags-alphabetical",
+        "https://www.algum-outro-link-grande.com.br/doc/openapi-tags-alphabetical"
+      ]
+    },
+    {
+      "rule": "truthy-and-falsy",
+      "context": "$.info.contact",
+      "severity": "error",
+      "messages": [
+        "$.info.contact.contact must not be: empty string, 0, false, null"
+      ],
+      "documentations": []
+    },
+    {
+      "rule": "truthy-and-falsy",
+      "context": "$.info.contact",
+      "severity": "error",
+      "messages": [
+        "$.info.contact.contact must not be: empty string, 0, false, null"
+      ],
+      "documentations": []
+    },
+    {
+      "rule": "truthy-and-falsy",
+      "context": "$.info.license",
+      "severity": "error",
+      "messages": [
+        "$.info.license.license must not be: empty string, 0, false, null"
+      ],
+      "documentations": []
+    },
+    {
+      "rule": "truthy-and-falsy",
+      "context": "$.info.license",
+      "severity": "error",
+      "messages": [
+        "$.info.license.license must not be: empty string, 0, false, null"
+      ],
+      "documentations": []
+    }
+  ],
+  "summary": {
+    "total_errors": "4",
+    "total_warnings": "1",
+    "total_informations": "0",
+    "total_hints": "0"
+  }
+}

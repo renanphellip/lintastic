@@ -11,7 +11,9 @@ from .schema import SchemaInputsStrategy
 from .truthy import TruthyInputsStrategy
 from .typed_enum import TypedEnumInputsStrategy
 from .undefined import UndefinedInputsStrategy
-from .unreferenced_reusable_object import UnreferencedReusableObjectInputsStrategy
+from .unreferenced_reusable_object import (
+    UnreferencedReusableObjectInputsStrategy,
+)
 from .xor import XORInputsStrategy
 
 __all__ = [
@@ -29,5 +31,5 @@ __all__ = [
     'TypedEnumInputsStrategy',
     'UndefinedInputsStrategy',
     'UnreferencedReusableObjectInputsStrategy',
-    'XORInputsStrategy'
+    'XORInputsStrategy',
 ]

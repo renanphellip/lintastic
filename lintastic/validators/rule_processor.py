@@ -1,6 +1,5 @@
+import json
 from typing import Any, Callable, Dict, List, Union
-
-from rich.markup import escape
 
 from lintastic.entities.diagnostic import Diagnostic
 from lintastic.entities.functions import (
@@ -66,23 +65,31 @@ class RuleProcessor:
         rule_function: Callable,
         jsonpath_match: JSONPathMatch,
     ) -> Union[Diagnostic, None]:
+        inputs_strategy_mapper = InputsStrategyMapper()
+        inputs_strategy = inputs_strategy_mapper.get_strategy(
+            rule_then.function
+        )
+        function_inputs = inputs_strategy.get_inputs(
+            rule.name, rule_then, jsonpath_match, self.verbose
+        )
+
         if self.verbose:
+            rule_processing_data = {
+                'rule': function_inputs.rule_name,
+                'context': function_inputs.context,
+                'function': rule_then.function,
+            }
+            if function_inputs.field:
+                rule_processing_data['field'] = function_inputs.field
+            if function_inputs.options:
+                rule_processing_data['options'] = dict(function_inputs.options)
+            rule_processing_data = json.dumps(rule_processing_data)
             Logger.debug(
                 LogMessage.RUNNING_FUNCTION.format(
-                    function_name=rule_then.function,
-                    jsonpath_match=escape(str(jsonpath_match)),
+                    rule_processing_data=rule_processing_data
                 )
             )
-        
-        inputs_strategy_mapper = InputsStrategyMapper()
-        inputs_strategy = inputs_strategy_mapper.get_strategy(rule_then.function)
-        function_inputs = inputs_strategy.get_inputs(
-            rule.name,
-            rule.then,
-            jsonpath_match,
-            self.verbose
-        )
-        
+
         function_messages = rule_function(function_inputs)
         if function_messages:
             return Diagnostic(

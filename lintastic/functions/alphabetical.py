@@ -3,9 +3,7 @@ from typing import List
 from lintastic.entities.functions.inputs import FunctionInputs
 
 
-def alphabetical(
-    inputs: FunctionInputs
-) -> List[str]:
+def alphabetical(inputs: FunctionInputs) -> List[str]:
     field_target_value = inputs.target_value.get(inputs.field)
     keyed_by = inputs.options.keyed_by
     if isinstance(field_target_value, list) and keyed_by:
@@ -17,8 +15,8 @@ def alphabetical(
         if keys != sorted(keys):
             return [
                 (
-                    f'"{inputs.context}" should have alphabetical "{inputs.field}" '
-                    f'by {keyed_by}.'
+                    f'"{inputs.context}" should have alphabetical '
+                    f'"{inputs.field}" by {keyed_by}.'
                 )
             ]
     return []

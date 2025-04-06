@@ -36,13 +36,24 @@ class LogMessage(str, Enum):
         'The core function "{function_name}" already '
         'exists. The custom function with the same name will not be used.'
     )
+    FAIL_TO_PARSE_DUNDER_ALL_FROM_INIT = (
+        'Failed to parse "__all__" from "{functions_init_path}": {error}'
+    )
     FUNCTION_IMPORTED = 'Imported function: {function_name}'
+    FAIL_TO_IMPORT_WITH_MISSING_FUNCTIONS = (
+        'Failed to import functions from "{functions_init_path}". Check '
+        'these modules {missing_functions} to fix the following error: '
+        '{error}'
+    )
+    FAIL_TO_IMPORT_FUNCTIONS = (
+        'Failed to import functions from "{functions_init_path}": {error}'
+    )
     RULESET_FUNCTIONS_NOT_FOUND = (
         'The following ruleset functions was not found: {functions}'
     )
-    JSONPATH_RESULTS_LENGTH = (
-        '{results_len} occurrences were found for JSONPath pattern: '
-        '{jsonpath_pattern}'
+    JSONPATH_RESULTS = (
+        'The following occurrences were found for JSONPath '
+        '"{jsonpath_pattern}": {jsonpath_results}'
     )
     FAIL_TO_PARSE_JSONPATH = (
         'Failed to parse JSONPath "{jsonpath_pattern}": {error}'
@@ -51,9 +62,7 @@ class LogMessage(str, Enum):
         'Failed to validate the document "{document_path}": {error}'
     )
     PROCESSING_RULE = 'Processing rule: {rule_name}'
-    RUNNING_FUNCTION = (
-        'Running "{function_name}" function for given: {jsonpath_match}'
-    )
+    RUNNING_FUNCTION = 'Running: {rule_processing_data}'
     FAIL_TO_WRITE_FILE_WITH_INVALID_TYPE = (
         'Failed to write "{output_path}". '
         'Data must be an instance of "DiagnosticCollection".'

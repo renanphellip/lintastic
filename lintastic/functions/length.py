@@ -23,9 +23,7 @@ def _check_min_length(value: Any, min_length: Union[int, float]) -> bool:
     return False
 
 
-def length(
-    inputs: FunctionInputs
-) -> List[str]:
+def length(inputs: FunctionInputs) -> List[str]:
     min_length = inputs.options.min
     max_length = inputs.options.max
     has_min_length = min_length != -1

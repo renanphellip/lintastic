@@ -21,7 +21,8 @@ class MdFileWriter:
             if diagnostic_collection.diagnostics:
                 file.write('## Diagnostics\n\n')
                 file.write(
-                    '| Rule | Severity | Context | Messages | Documentations |\n'
+                    '| Rule | Severity | Context | Messages '
+                    '| Documentations |\n'
                 )
                 file.write('| - | - | - | - | - |\n')
                 for diagnostic in diagnostic_collection.diagnostics:

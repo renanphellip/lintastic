@@ -1,0 +1,38 @@
+Rule: openapi-tags-alphabetical
+Severity: warn
+Context: $
+Messages:
+- "$" should have alphabetical "tags" by name.
+Documentations:
+- https://www.algum-link-grande.com.br/doc/openapi-tags-alphabetical
+- https://www.algum-outro-link-grande.com.br/doc/openapi-tags-alphabetical
+
+Rule: truthy-and-falsy
+Severity: error
+Context: $.info.contact
+Messages:
+- $.info.contact.contact must not be: empty string, 0, false, null
+
+Rule: truthy-and-falsy
+Severity: error
+Context: $.info.contact
+Messages:
+- $.info.contact.contact must not be: empty string, 0, false, null
+
+Rule: truthy-and-falsy
+Severity: error
+Context: $.info.license
+Messages:
+- $.info.license.license must not be: empty string, 0, false, null
+
+Rule: truthy-and-falsy
+Severity: error
+Context: $.info.license
+Messages:
+- $.info.license.license must not be: empty string, 0, false, null
+
+Summary:
+- Total errors: 4
+- Total warnings: 1
+- Total informations: 0
+- Total hints: 0

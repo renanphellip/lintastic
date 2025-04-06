@@ -93,5 +93,7 @@ def validate(
             results_path, diagnostic_collection
         )
         Logger.success(
-            LogMessage.RESULTS_EXPORTED.format(results_path=absolute_results_path)
+            LogMessage.RESULTS_EXPORTED.format(
+                results_path=absolute_results_path
+            )
         )

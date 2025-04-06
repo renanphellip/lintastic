@@ -3,9 +3,7 @@ from typing import List
 from lintastic.entities.functions.inputs import FunctionInputs
 
 
-def typedEnum(
-    inputs: FunctionInputs
-) -> List[str]:
+def typedEnum(inputs: FunctionInputs) -> List[str]:
     opt_enum = inputs.options.enum
     opt_type = inputs.options.type
     data_types = {
@@ -24,8 +22,8 @@ def typedEnum(
                     )
             if not isinstance(inputs.target_value, data_types.get(opt_type)):
                 messages.append(
-                    f'The value {inputs.target_value} in {inputs.context} must be '
-                    f'of type {opt_type}.'
+                    f'The value {inputs.target_value} in {inputs.context} '
+                    f'must be of type {opt_type}.'
                 )
         if inputs.target_value not in opt_enum:
             messages.append(f'{inputs.context} must be: {opt_enum}')
