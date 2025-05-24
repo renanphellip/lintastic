@@ -7,8 +7,6 @@ from .falsy import FalsyInputsStrategy
 from .length import LengthInputsStrategy
 from .pattern import PatternInputsStrategy
 from .schema import SchemaInputsStrategy
-from ....interfaces.inputs_strategy import InputsStrategy
-from ..inputs_strategy_mapper import InputsStrategyMapper
 from .truthy import TruthyInputsStrategy
 from .typed_enum import TypedEnumInputsStrategy
 from .undefined import UndefinedInputsStrategy
@@ -32,6 +30,4 @@ __all__ = [
     'UndefinedInputsStrategy',
     'UnreferencedReusableObjectInputsStrategy',
     'XORInputsStrategy',
-    'InputsStrategy',
-    'InputsStrategyMapper',
 ]

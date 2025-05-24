@@ -21,7 +21,7 @@ from lintastic.core.entities.functions import (
 from lintastic.core.entities.jsonpath_match import JSONPathMatch
 from lintastic.core.entities.rule import Rule
 from lintastic.core.enums.log_message import LogMessage
-from lintastic.core.functions.strategies.inputs_strategy import (
+from lintastic.core.strategies.inputs_strategy_mapper import (
     InputsStrategyMapper,
 )
 from lintastic.core.interfaces.rule_processor_service import IRuleProcessorService
@@ -68,7 +68,7 @@ class RuleProcessorService(IRuleProcessorService):
         inputs_strategy_mapper = InputsStrategyMapper()
         inputs_strategy = inputs_strategy_mapper.get_strategy(rule_then.function)
         function_inputs = inputs_strategy.get_inputs(rule.name, rule_then, jsonpath_match)
-        
+
         rule_processing_data = {
             'rule': function_inputs.rule_name,
             'context': function_inputs.context,

@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Any, Union
+from typing import Any, Optional, Union
 
 from pydantic import BaseModel
 
@@ -17,4 +17,4 @@ class UndefinedFunctionInputs:
     context: str
     target_value: Any
     options = None
-    field: Union[str, None] = None
+    field: Optional[str] = None

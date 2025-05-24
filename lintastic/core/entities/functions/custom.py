@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Any, Dict, Union
+from typing import Any, Dict, Optional, Union
 
 from pydantic import BaseModel
 
@@ -15,8 +15,7 @@ class CustomFunctionInputs:
     rule_name: str
     context: str
     target_value: Any
-    options: Union[
+    options: Optional[
         Dict[str, Any],
-        None,
     ] = None
-    field: Union[str, None] = None
+    field: Optional[str] = None

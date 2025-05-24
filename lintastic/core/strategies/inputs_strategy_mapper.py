@@ -1,5 +1,5 @@
 from lintastic.core.enums.core_function import CoreFunction
-from lintastic.core.enums.log_message import LogMessage
+from lintastic.core.interfaces.inputs_strategy import IInputsStrategy
 
 from .inputs_strategy.alphabetical import AlphabeticalInputsStrategy
 from .inputs_strategy.casing import CasingInputsStrategy
@@ -10,7 +10,6 @@ from .inputs_strategy.falsy import FalsyInputsStrategy
 from .inputs_strategy.length import LengthInputsStrategy
 from .inputs_strategy.pattern import PatternInputsStrategy
 from .inputs_strategy.schema import SchemaInputsStrategy
-from lintastic.core.interfaces.inputs_strategy import IInputsStrategy
 from .inputs_strategy.truthy import TruthyInputsStrategy
 from .inputs_strategy.typed_enum import TypedEnumInputsStrategy
 from .inputs_strategy.undefined import UndefinedInputsStrategy

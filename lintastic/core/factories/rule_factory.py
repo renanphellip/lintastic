@@ -10,10 +10,8 @@ from lintastic.core.entities.functions.undefined import UndefinedRuleThen
 from lintastic.core.entities.rule import Rule
 from lintastic.core.entities.spectral import SpectralRule, SpectralRuleThen
 from lintastic.core.enums.log_message import LogMessage
-from lintastic.core.functions.strategies.rule_then_strategy import (
-    RuleThenStrategyMapper,
-)
 from lintastic.core.interfaces.rule_factory import IRuleFactory
+from lintastic.core.strategies.rule_then_strategy_mapper import RuleThenStrategyMapper
 from lintastic.utils.logger import Logger
 
 

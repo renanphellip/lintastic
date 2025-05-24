@@ -17,7 +17,6 @@ from .enumeration import (
     EnumerationRuleThen,
 )
 from .falsy import FalsyFunctionInputs, FalsyRuleThen
-from ...interfaces.function_inputs import FunctionInputs
 from .length import LengthFunctionInputs, LengthFunctionOptions, LengthRuleThen
 from .pattern import (
     PatternFunctionInputs,
@@ -84,5 +83,4 @@ __all__ = [
     'XORFunctionInputs',
     'CustomRuleThen',
     'CustomFunctionInputs',
-    'FunctionInputs',
 ]

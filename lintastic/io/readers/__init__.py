@@ -1,4 +1,3 @@
-from ..interfaces.file_reader import IFileReader
 from .file_reader_factory import FileReaderFactory
 from .file_reader_service import FileReaderService
 from .json_file_reader import JsonFileReader
@@ -8,7 +7,6 @@ from .yaml_file_reader import YamlFileReader
 __all__ = [
     'FileReaderFactory',
     'FileReaderService',
-    'IFileReader',
     'JsonFileReader',
     'TomlFileReader',
     'YamlFileReader',

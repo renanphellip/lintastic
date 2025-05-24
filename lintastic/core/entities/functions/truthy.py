@@ -17,4 +17,4 @@ class TruthyFunctionInputs:
     context: str
     target_value: Any
     options = None
-    field: Union[str, None] = None
+    field: str

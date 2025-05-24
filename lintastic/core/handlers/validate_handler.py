@@ -2,15 +2,15 @@ import os
 
 from lintastic.cli.dto.validate_inputs_dto import ValidateInputsDTO
 from lintastic.core.enums.log_message import LogMessage
+from lintastic.core.factories.rule_factory import RuleFactory
+from lintastic.core.services.document_resolver_service import DocumentResolverService
 from lintastic.core.services.function_importer_service import FunctionImporterService
 from lintastic.core.services.jsonpath_processor_service import JSONPathProcessorService
-from lintastic.core.services.rule_processor_service import RuleProcessorService
-from lintastic.core.services.document_resolver_service import DocumentResolverService
 from lintastic.core.services.ref_resolver_service import RefResolverService
-from lintastic.core.factories.rule_factory import RuleFactory
+from lintastic.core.services.rule_processor_service import RuleProcessorService
 from lintastic.core.services.ruleset_loader_service import RulesetLoaderService
-from lintastic.core.validators.document_validator_service import DocumentValidatorService
-from lintastic.core.validators.function_validator_service import FunctionValidatorService
+from lintastic.core.services.document_validator_service import DocumentValidatorService
+from lintastic.core.services.function_validator_service import FunctionValidatorService
 from lintastic.io.readers.file_reader_service import FileReaderService
 from lintastic.io.writers.file_writer_service import FileWriterService
 from lintastic.utils.logger import Logger

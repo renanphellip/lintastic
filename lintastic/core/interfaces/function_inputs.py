@@ -1,18 +1,17 @@
-from dataclasses import dataclass
 from typing import Any, Dict, Optional, Protocol, Union
 
-from ..entities.functions.alphabetical import AlphabeticalFunctionOptions
-from ..entities.functions.casing import CasingFunctionOptions
-from ..entities.functions.enumeration import EnumerationFunctionOptions
-from ..entities.functions.length import LengthFunctionOptions
-from ..entities.functions.pattern import PatternFunctionOptions
-from ..entities.functions.schema import SchemaFunctionOptions
-from ..entities.functions.typed_enum import TypedEnumFunctionOptions
-from ..entities.functions.unreferenced_reusable_object import (
+from lintastic.core.entities.functions.alphabetical import AlphabeticalFunctionOptions
+from lintastic.core.entities.functions.casing import CasingFunctionOptions
+from lintastic.core.entities.functions.enumeration import EnumerationFunctionOptions
+from lintastic.core.entities.functions.length import LengthFunctionOptions
+from lintastic.core.entities.functions.pattern import PatternFunctionOptions
+from lintastic.core.entities.functions.schema import SchemaFunctionOptions
+from lintastic.core.entities.functions.typed_enum import TypedEnumFunctionOptions
+from lintastic.core.entities.functions.unreferenced_reusable_object import (
     UnreferencedReusableObjectFunctionOptions,
 )
-from ..entities.functions.xor import XORFunctionOptions
-from abc import ABC
+from lintastic.core.entities.functions.xor import XORFunctionOptions
+
 
 class IFunctionInputs(Protocol):
     rule_name: str

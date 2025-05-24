@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Any
+from typing import Any, Optional
 
 from pydantic import BaseModel
 
@@ -17,4 +17,4 @@ class DefinedFunctionInputs:
     context: str
     target_value: Any
     options = None
-    field: str
+    field: Optional[str] = None

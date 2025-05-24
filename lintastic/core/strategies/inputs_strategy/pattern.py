@@ -6,7 +6,6 @@ from lintastic.core.entities.jsonpath_match import JSONPathMatch
 
 
 class PatternInputsStrategy:
-    # ruff: noqa: PLR6301
     def get_inputs(
         self,
         rule_name: str,

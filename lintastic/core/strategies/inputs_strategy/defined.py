@@ -7,7 +7,6 @@ from lintastic.utils.shared import get_field_name
 
 
 class DefinedInputsStrategy:
-    # ruff: noqa: PLR6301
     def get_inputs(
         self,
         rule_name: str,

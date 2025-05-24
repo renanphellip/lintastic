@@ -7,7 +7,6 @@ from .falsy import FalsyRuleThenStrategy
 from .length import LengthRuleThenStrategy
 from .pattern import PatternRuleThenStrategy
 from .schema import SchemaRuleThenStrategy
-from ..rule_then_strategy_mapper import RuleThenStrategyMapper
 from .truthy import TruthyRuleThenStrategy
 from .typed_enum import TypedEnumRuleThenStrategy
 from .undefined import UndefinedRuleThenStrategy
@@ -31,6 +30,4 @@ __all__ = [
     'UndefinedRuleThenStrategy',
     'UnreferencedReusableObjectRuleThenStrategy',
     'XORRuleThenStrategy',
-    'RuleThenStrategy',
-    'RuleThenStrategyMapper',
 ]

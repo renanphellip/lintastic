@@ -1,4 +1,5 @@
-from typing import Protocol, Union
+from abc import ABC, abstractmethod
+from typing import Union
 
 from lintastic.core.entities.functions import (
     AlphabeticalRuleThen,
@@ -16,9 +17,9 @@ from lintastic.core.entities.functions import (
     UnreferencedReusableObjectRuleThen,
     XORRuleThen,
 )
-from lintastic.core.interfaces.function_inputs import IFunctionInputs
 from lintastic.core.entities.jsonpath_match import JSONPathMatch
-from abc import ABC, abstractmethod
+from lintastic.core.interfaces.function_inputs import IFunctionInputs
+
 
 class IInputsStrategy(ABC):
     @abstractmethod

@@ -1,5 +1,4 @@
 from lintastic.core.enums.core_function import CoreFunction
-from lintastic.core.enums.log_message import LogMessage
 from lintastic.core.interfaces.rule_then_strategy import IRuleThenStrategy
 
 from .rule_then_strategy.alphabetical import AlphabeticalRuleThenStrategy

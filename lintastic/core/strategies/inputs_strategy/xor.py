@@ -3,7 +3,6 @@ from lintastic.core.entities.jsonpath_match import JSONPathMatch
 
 
 class XORInputsStrategy:
-    # ruff: noqa: PLR6301
     def get_inputs(
         self,
         rule_name: str,

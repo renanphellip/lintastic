@@ -1,5 +1,4 @@
 from .file_validator import FileValidator
-from .function_arguments_handler import FunctionArgumentsHandler
 from .logger import Logger
 from .shared import (
     get_field_name,
@@ -13,5 +12,4 @@ __all__ = [
     'get_field_name',
     'quote_unquoted_jsonpaths',
     'transform_data_to_list',
-    'FunctionArgumentsHandler',
 ]
