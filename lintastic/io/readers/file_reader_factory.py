@@ -1,7 +1,7 @@
 from lintastic.core.enums.log_message import LogMessage
+from lintastic.io.interfaces.file_reader import IFileReader
 from lintastic.utils.logger import Logger
 
-from .file_reader import IFileReader
 from .json_file_reader import JsonFileReader
 from .toml_file_reader import TomlFileReader
 from .yaml_file_reader import YamlFileReader
@@ -18,8 +18,4 @@ class FileReaderFactory:
         elif file_path.endswith(('yaml', 'yml')):
             return YamlFileReader()
         else:
-            Logger.error(
-                LogMessage.UNSUPPORTED_FILE_EXTENSION.format(
-                    file_path=file_path
-                )
-            )
+            Logger.error(LogMessage.UNSUPPORTED_FILE_EXTENSION.format(file_path=file_path))

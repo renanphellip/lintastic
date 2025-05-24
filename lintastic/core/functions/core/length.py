@@ -17,21 +17,15 @@ def length(inputs: LengthFunctionInputs) -> List[str]:
     if has_min_length and min_length_failed:
         message = f'The {inputs.field} value in {inputs.context}'
         if isinstance(field_target_value, (str, list, dict)):
-            message += (
-                f' must have a length greater than or equal to {min_length}.'
-            )
+            message += f' must have a length greater than or equal to {min_length}.'
         else:
-            message += (
-                f' must be a number greater than or equal to {min_length}.'
-            )
+            message += f' must be a number greater than or equal to {min_length}.'
         messages.append(message)
 
     if has_max_length and max_length_failed:
         message = f'The {inputs.field} value in {inputs.context}'
         if isinstance(field_target_value, (str, list, dict)):
-            message += (
-                f' must have a length less than or equal to {max_length}.'
-            )
+            message += f' must have a length less than or equal to {max_length}.'
         else:
             message += f' must be a number less than or equal to {max_length}.'
         messages.append(message)

@@ -1,7 +1,7 @@
 from lintastic.core.enums.log_message import LogMessage
 from lintastic.utils.logger import Logger
 
-from .file_writer import IFileWriter
+from ..interfaces.file_writer import IFileWriter
 from .json_file_writer import JsonFileWriter
 from .md_file_writer import MdFileWriter
 from .txt_file_writer import TxtFileWriter
@@ -21,8 +21,4 @@ class FileWriterFactory:
         elif output_path.endswith(('yaml', 'yml')):
             return YamlFileWriter()
         else:
-            Logger.error(
-                LogMessage.UNSUPPORTED_FILE_EXTENSION.format(
-                    file_path=output_path
-                )
-            )
+            Logger.error(LogMessage.UNSUPPORTED_FILE_EXTENSION.format(file_path=output_path))

@@ -54,7 +54,7 @@ def casing(inputs: CasingFunctionInputs) -> List[str]:
         ),
     }
     if casing_types.get(casing_type) is False:
-        return [f'{inputs.context} must be {casing_type} case.']
+        return [f'"{inputs.context}" must be {casing_type} case.']
     return []
 
 
@@ -76,10 +76,7 @@ def _is_flat_case(
         if separator_char:
             regex = rf'[a-z]+[a-z0-9]*(?:{separator_char}[a-z]+[a-z0-9]*)*'
             if separator_allow_leading is True:
-                regex = (
-                    rf'{separator_char}?[a-z]+[a-z0-9]*'
-                    rf'(?:{separator_char}[a-z]+[a-z0-9]*)*'
-                )
+                regex = rf'{separator_char}?[a-z]+[a-z0-9]*' rf'(?:{separator_char}[a-z]+[a-z0-9]*)*'
     return bool(re.match(rf'^{regex}$', input))
 
 
@@ -93,31 +90,15 @@ def _is_camel_case(
     if disallow_digits is True:
         regex = r'[a-z]+(?:[A-Z][a-z]+)*'
         if separator_char:
-            regex = (
-                rf'[a-z]+(?:[A-Z][a-z]+)*'
-                rf'(?:{separator_char}?[a-z]+(?:[A-Z][a-z]+)*)*'
-            )
+            regex = rf'[a-z]+(?:[A-Z][a-z]+)*' rf'(?:{separator_char}?[a-z]+(?:[A-Z][a-z]+)*)*'
             if separator_allow_leading is True:
-                regex = (
-                    rf'{separator_char}?[a-z]+'
-                    rf'(?:[A-Z][a-z]+)*(?:{separator_char}?[a-z]+'
-                    rf'(?:[A-Z][a-z]+)*)*'
-                )
+                regex = rf'{separator_char}?[a-z]+' rf'(?:[A-Z][a-z]+)*(?:{separator_char}?[a-z]+' rf'(?:[A-Z][a-z]+)*)*'
     else:
         regex = r'[a-z]+(?:[A-Z][a-z]+|[A-Z][0-9]+|[0-9]*[A-Z][a-z]+)*'
         if separator_char:
-            regex = (
-                rf'[a-z]+(?:[A-Z][a-z]+|[A-Z][0-9]+|[0-9]*[A-Z][a-z]+)*'
-                rf'(?:{separator_char}?[a-z]+'
-                rf'(?:[A-Z][a-z]+|[A-Z][0-9]+|[0-9]*[A-Z][a-z]+)*)*'
-            )
+            regex = rf'[a-z]+(?:[A-Z][a-z]+|[A-Z][0-9]+|[0-9]*[A-Z][a-z]+)*' rf'(?:{separator_char}?[a-z]+' rf'(?:[A-Z][a-z]+|[A-Z][0-9]+|[0-9]*[A-Z][a-z]+)*)*'
             if separator_allow_leading is True:
-                regex = (
-                    rf'{separator_char}?[a-z]+'
-                    rf'(?:[A-Z][a-z]+|[A-Z][0-9]+|[0-9]*[A-Z][a-z]+)*'
-                    rf'(?:{separator_char}?[a-z]+'
-                    rf'(?:[A-Z][a-z]+|[A-Z][0-9]+|[0-9]*[A-Z][a-z]+)*)*'
-                )
+                regex = rf'{separator_char}?[a-z]+' rf'(?:[A-Z][a-z]+|[A-Z][0-9]+|[0-9]*[A-Z][a-z]+)*' rf'(?:{separator_char}?[a-z]+' rf'(?:[A-Z][a-z]+|[A-Z][0-9]+|[0-9]*[A-Z][a-z]+)*)*'
     return bool(re.match(rf'^{regex}$', input))
 
 
@@ -131,30 +112,15 @@ def _is_pascal_case(
     if disallow_digits is True:
         regex = r'[A-Z][a-z]+(?:[A-Z][a-z]+)*'
         if separator_char:
-            regex = (
-                rf'[A-Z][a-z]+(?:[A-Z][a-z]+)*'
-                rf'(?:{separator_char}?[A-Z][a-z]+(?:[A-Z][a-z]+)*)*'
-            )
+            regex = rf'[A-Z][a-z]+(?:[A-Z][a-z]+)*' rf'(?:{separator_char}?[A-Z][a-z]+(?:[A-Z][a-z]+)*)*'
             if separator_allow_leading is True:
-                regex = (
-                    rf'{separator_char}?[A-Z][a-z]+(?:[A-Z][a-z]+)*'
-                    rf'(?:{separator_char}?[A-Z][a-z]+(?:[A-Z][a-z]+)*)*'
-                )
+                regex = rf'{separator_char}?[A-Z][a-z]+(?:[A-Z][a-z]+)*' rf'(?:{separator_char}?[A-Z][a-z]+(?:[A-Z][a-z]+)*)*'
     else:
         regex = r'[A-Z][a-z]+(?:[A-Z][a-z]+|[A-Z][0-9]+|[0-9]*[A-Z][a-z]+)*'
         if separator_char:
-            regex = (
-                rf'[A-Z][a-z]+(?:[A-Z][a-z]+|[A-Z][0-9]+|[0-9]*[A-Z][a-z]+)*'
-                rf'(?:{separator_char}?[A-Z][a-z]+'
-                rf'(?:[A-Z][a-z]+|[A-Z][0-9]+|[0-9]*[A-Z][a-z]+)*)*'
-            )
+            regex = rf'[A-Z][a-z]+(?:[A-Z][a-z]+|[A-Z][0-9]+|[0-9]*[A-Z][a-z]+)*' rf'(?:{separator_char}?[A-Z][a-z]+' rf'(?:[A-Z][a-z]+|[A-Z][0-9]+|[0-9]*[A-Z][a-z]+)*)*'
             if separator_allow_leading is True:
-                regex = (
-                    rf'{separator_char}?[A-Z][a-z]+'
-                    rf'(?:[A-Z][a-z]+|[A-Z][0-9]+|[0-9]*[A-Z][a-z]+)*'
-                    rf'(?:{separator_char}?[A-Z][a-z]+'
-                    rf'(?:[A-Z][a-z]+|[A-Z][0-9]+|[0-9]*[A-Z][a-z]+)*)*'
-                )
+                regex = rf'{separator_char}?[A-Z][a-z]+' rf'(?:[A-Z][a-z]+|[A-Z][0-9]+|[0-9]*[A-Z][a-z]+)*' rf'(?:{separator_char}?[A-Z][a-z]+' rf'(?:[A-Z][a-z]+|[A-Z][0-9]+|[0-9]*[A-Z][a-z]+)*)*'
     return bool(re.match(rf'^{regex}$', input))
 
 
@@ -168,26 +134,15 @@ def _is_kebab_case(
     if disallow_digits is True:
         regex = r'[a-z]+(?:-[a-z]+)*'
         if separator_char:
-            regex = (
-                rf'[a-z]+(?:-[a-z]+)*(?:{separator_char}?[a-z]+(?:-[a-z]+)*)*'
-            )
+            regex = rf'[a-z]+(?:-[a-z]+)*(?:{separator_char}?[a-z]+(?:-[a-z]+)*)*'
             if separator_allow_leading is True:
-                regex = (
-                    rf'{separator_char}?[a-z]+(?:-[a-z]+)*'
-                    rf'(?:{separator_char}?[a-z]+(?:-[a-z]+)*)*'
-                )
+                regex = rf'{separator_char}?[a-z]+(?:-[a-z]+)*' rf'(?:{separator_char}?[a-z]+(?:-[a-z]+)*)*'
     else:
         regex = r'[a-z]+(?:-[a-z0-9]+)*'
         if separator_char:
-            regex = (
-                rf'[a-z]+(?:-[a-z0-9]+)*'
-                rf'(?:{separator_char}?[a-z]+(?:-[a-z0-9]+)*)*'
-            )
+            regex = rf'[a-z]+(?:-[a-z0-9]+)*' rf'(?:{separator_char}?[a-z]+(?:-[a-z0-9]+)*)*'
             if separator_allow_leading is True:
-                regex = (
-                    rf'{separator_char}?[a-z]+(?:-[a-z0-9]+)*'
-                    rf'(?:{separator_char}?[a-z]+(?:-[a-z0-9]+)*)*'
-                )
+                regex = rf'{separator_char}?[a-z]+(?:-[a-z0-9]+)*' rf'(?:{separator_char}?[a-z]+(?:-[a-z0-9]+)*)*'
     return bool(re.match(rf'^{regex}$', input))
 
 
@@ -201,26 +156,15 @@ def _is_cobol_case(
     if disallow_digits is True:
         regex = r'[A-Z]+(?:-[A-Z]+)*'
         if separator_char:
-            regex = (
-                rf'[A-Z]+(?:-[A-Z]+)*(?:{separator_char}?[A-Z]+(?:-[A-Z]+)*)*'
-            )
+            regex = rf'[A-Z]+(?:-[A-Z]+)*(?:{separator_char}?[A-Z]+(?:-[A-Z]+)*)*'
             if separator_allow_leading is True:
-                regex = (
-                    rf'{separator_char}?[A-Z]+(?:-[A-Z]+)*'
-                    rf'(?:{separator_char}?[A-Z]+(?:-[A-Z]+)*)*'
-                )
+                regex = rf'{separator_char}?[A-Z]+(?:-[A-Z]+)*' rf'(?:{separator_char}?[A-Z]+(?:-[A-Z]+)*)*'
     else:
         regex = r'[A-Z]+(?:-[A-Z0-9]+)*'
         if separator_char:
-            regex = (
-                rf'[A-Z]+(?:-[A-Z0-9]+)*(?:{separator_char}?[A-Z]+'
-                rf'(?:-[A-Z0-9]+)*)*'
-            )
+            regex = rf'[A-Z]+(?:-[A-Z0-9]+)*(?:{separator_char}?[A-Z]+' rf'(?:-[A-Z0-9]+)*)*'
             if separator_allow_leading is True:
-                regex = (
-                    rf'{separator_char}?[A-Z]+(?:-[A-Z0-9]+)*'
-                    rf'(?:{separator_char}?[A-Z]+(?:-[A-Z0-9]+)*)*'
-                )
+                regex = rf'{separator_char}?[A-Z]+(?:-[A-Z0-9]+)*' rf'(?:{separator_char}?[A-Z]+(?:-[A-Z0-9]+)*)*'
     return bool(re.match(rf'^{regex}$', input))
 
 
@@ -234,26 +178,15 @@ def _is_snake_case(
     if disallow_digits is True:
         regex = r'[a-z]+(?:_[a-z]+)*'
         if separator_char:
-            regex = (
-                rf'[a-z]+(?:_[a-z]+)*(?:{separator_char}?[a-z]+(?:_[a-z]+)*)*'
-            )
+            regex = rf'[a-z]+(?:_[a-z]+)*(?:{separator_char}?[a-z]+(?:_[a-z]+)*)*'
             if separator_allow_leading is True:
-                regex = (
-                    rf'{separator_char}?[a-z]+(?:_[a-z]+)*'
-                    rf'(?:{separator_char}?[a-z]+(?:_[a-z]+)*)*'
-                )
+                regex = rf'{separator_char}?[a-z]+(?:_[a-z]+)*' rf'(?:{separator_char}?[a-z]+(?:_[a-z]+)*)*'
     else:
         regex = r'[a-z]+(?:_[a-z0-9]+)*'
         if separator_char:
-            regex = (
-                rf'[a-z]+(?:_[a-z0-9]+)*'
-                rf'(?:{separator_char}?[a-z]+(?:_[a-z0-9]+)*)*'
-            )
+            regex = rf'[a-z]+(?:_[a-z0-9]+)*' rf'(?:{separator_char}?[a-z]+(?:_[a-z0-9]+)*)*'
             if separator_allow_leading is True:
-                regex = (
-                    rf'{separator_char}?[a-z]+(?:_[a-z0-9]+)*'
-                    rf'(?:{separator_char}?[a-z]+(?:_[a-z0-9]+)*)*'
-                )
+                regex = rf'{separator_char}?[a-z]+(?:_[a-z0-9]+)*' rf'(?:{separator_char}?[a-z]+(?:_[a-z0-9]+)*)*'
     return bool(re.match(rf'^{regex}$', input))
 
 
@@ -267,24 +200,13 @@ def _is_macro_case(
     if disallow_digits is True:
         regex = r'[A-Z]+(?:_[A-Z]+)*'
         if separator_char:
-            regex = (
-                rf'[A-Z]+(?:_[A-Z]+)*(?:{separator_char}?[A-Z]+(?:_[A-Z]+)*)*'
-            )
+            regex = rf'[A-Z]+(?:_[A-Z]+)*(?:{separator_char}?[A-Z]+(?:_[A-Z]+)*)*'
             if separator_allow_leading is True:
-                regex = (
-                    rf'{separator_char}?[A-Z]+(?:_[A-Z]+)*'
-                    rf'(?:{separator_char}?[A-Z]+(?:_[A-Z]+)*)*'
-                )
+                regex = rf'{separator_char}?[A-Z]+(?:_[A-Z]+)*' rf'(?:{separator_char}?[A-Z]+(?:_[A-Z]+)*)*'
     else:
         regex = r'[A-Z]+(?:_[A-Z0-9]+)*'
         if separator_char:
-            regex = (
-                rf'[A-Z]+(?:_[A-Z0-9]+)*'
-                rf'(?:{separator_char}?[A-Z]+(?:_[A-Z0-9]+)*)*'
-            )
+            regex = rf'[A-Z]+(?:_[A-Z0-9]+)*' rf'(?:{separator_char}?[A-Z]+(?:_[A-Z0-9]+)*)*'
             if separator_allow_leading is True:
-                regex = (
-                    rf'{separator_char}?[A-Z]+(?:_[A-Z0-9]+)*'
-                    rf'(?:{separator_char}?[A-Z]+(?:_[A-Z0-9]+)*)*'
-                )
+                regex = rf'{separator_char}?[A-Z]+(?:_[A-Z0-9]+)*' rf'(?:{separator_char}?[A-Z]+(?:_[A-Z0-9]+)*)*'
     return bool(re.match(rf'^{regex}$', input))

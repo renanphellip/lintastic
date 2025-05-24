@@ -1,4 +1,4 @@
-from .file_reader import IFileReader
+from ..interfaces.file_reader import IFileReader
 from .file_reader_factory import FileReaderFactory
 from .file_reader_service import FileReaderService
 from .json_file_reader import JsonFileReader

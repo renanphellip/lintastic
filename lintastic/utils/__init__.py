@@ -1,7 +1,8 @@
 from .file_validator import FileValidator
+from .function_arguments_handler import FunctionArgumentsHandler
 from .logger import Logger
 from .shared import (
-    get_field_name_from_jsonpath_context,
+    get_field_name,
     quote_unquoted_jsonpaths,
     transform_data_to_list,
 )
@@ -9,7 +10,8 @@ from .shared import (
 __all__ = [
     'FileValidator',
     'Logger',
-    'get_field_name_from_jsonpath_context',
+    'get_field_name',
     'quote_unquoted_jsonpaths',
     'transform_data_to_list',
+    'FunctionArgumentsHandler',
 ]

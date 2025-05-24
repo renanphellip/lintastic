@@ -42,11 +42,5 @@ def schema(inputs: SchemaFunctionInputs) -> List[str]:
     except Exception as error:
         return_all_errors = inputs.options.all_errors
         if return_all_errors:
-            return [
-                f'{inputs.context}.{inputs.field} does not meet the expected '
-                f'schema: {error}'
-            ]
-        return [
-            f'{inputs.context}.{inputs.field} does not meet the expected '
-            f'schema: {expected_schema}'
-        ]
+            return [f'{inputs.context}.{inputs.field} does not meet the expected ' f'schema: {error}']
+        return [f'{inputs.context}.{inputs.field} does not meet the expected ' f'schema: {expected_schema}']

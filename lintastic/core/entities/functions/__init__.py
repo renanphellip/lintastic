@@ -17,7 +17,7 @@ from .enumeration import (
     EnumerationRuleThen,
 )
 from .falsy import FalsyFunctionInputs, FalsyRuleThen
-from .function import FunctionInputs
+from ...interfaces.function_inputs import FunctionInputs
 from .length import LengthFunctionInputs, LengthFunctionOptions, LengthRuleThen
 from .pattern import (
     PatternFunctionInputs,

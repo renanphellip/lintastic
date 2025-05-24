@@ -2,9 +2,10 @@ from typing import Any, Dict
 
 import tomli
 
+from lintastic.io.interfaces.file_reader import IFileReader
 
-class TomlFileReader:
-    # ruff: noqa: PLR6301
+
+class TomlFileReader(IFileReader):
     def read(self, file_path: str) -> Dict[str, Any]:
         with open(file_path, 'rb') as file:
             return tomli.load(file)

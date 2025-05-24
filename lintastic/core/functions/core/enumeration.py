@@ -10,7 +10,5 @@ def enumeration(inputs: EnumerationFunctionInputs) -> List[str]:
     field_target_value = inputs.target_value.get(inputs.field)
     if isinstance(possible_values, list):
         if field_target_value not in possible_values:
-            return [
-                f'{inputs.context}.{inputs.field} must be: {possible_values}'
-            ]
+            return [f'{inputs.context}.{inputs.field} must be: {possible_values}']
     return []

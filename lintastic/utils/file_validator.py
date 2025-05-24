@@ -1,36 +1,23 @@
 import os
 from enum import Enum
-from typing import Literal
 
 from lintastic.core.enums.log_message import LogMessage
-from lintastic.utils.logger import Logger
 
 
 class FileValidator:
-    def __init__(self, verbose=False):
-        self.verbose = verbose
-
-    def validate_extension(
-        self, file_path: str, supported_extensions: Enum
-    ) -> Literal[True]:
-        extensions_list = [ext.value for ext in supported_extensions]
-        is_valid_extension = file_path.lower().endswith(tuple(extensions_list))
-        if not is_valid_extension:
-            Logger.error(
-                LogMessage.INVALID_FILE_EXTENSION.format(
-                    file_path=file_path,
-                    supported_extensions=extensions_list,
-                )
+    @staticmethod
+    def validate_extension(file_path: str, supported_extensions: Enum) -> tuple[bool, str]:
+        valid_extensions = [ext.value for ext in supported_extensions]
+        valid_extension = file_path.lower().endswith(tuple(valid_extensions))
+        if not valid_extension:
+            return False, LogMessage.INVALID_FILE_EXTENSION.format(
+                file_path=file_path,
+                supported_extensions=valid_extensions,
             )
-        if self.verbose:
-            Logger.debug(
-                LogMessage.VALID_FILE_EXTENSION.format(file_path=file_path)
-            )
-        return True
+        return True, ''
 
-    def validate_existence(self, file_path: str) -> Literal[True]:
+    @staticmethod
+    def validate_existence(file_path: str) -> tuple[bool, str]:
         if not os.path.exists(file_path):
-            Logger.error(LogMessage.FILE_NOT_FOUND.format(file_path=file_path))
-        if self.verbose:
-            Logger.debug(LogMessage.FILE_EXISTS.format(file_path=file_path))
-        return True
+            return False, LogMessage.FILE_NOT_FOUND.format(file_path=file_path)
+        return True, ''

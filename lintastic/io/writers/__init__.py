@@ -1,4 +1,4 @@
-from .file_writer import IFileWriter
+from ..interfaces.file_writer import IFileWriter
 from .file_writer_factory import FileWriterFactory
 from .file_writer_service import FileWriterService
 from .json_file_writer import JsonFileWriter

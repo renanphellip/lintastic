@@ -16,7 +16,7 @@ dev = 'poetry install --no-interaction && poetry run task format && poetry run t
 test = 'poetry run pytest -v --cov ./lintastic --cov-fail-under 90 --cov-report html'
 
 [tool.ruff]
-line-length = 79
+line-length = 200
 
 [tool.ruff.lint]
 preview = true

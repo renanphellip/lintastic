@@ -3,9 +3,10 @@ from typing import Any
 
 import yaml
 
+from lintastic.io.interfaces.file_writer import IFileWriter
 
-class YamlFileWriter:
-    # ruff: noqa: PLR6301
+
+class YamlFileWriter(IFileWriter):
     def write(self, output_path: str, data: Any) -> str:
         absolute_output_path = os.path.abspath(output_path.strip())
         with open(absolute_output_path, 'w', encoding='utf-8') as file:

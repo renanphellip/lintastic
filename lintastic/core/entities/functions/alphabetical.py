@@ -7,7 +7,7 @@ from lintastic.core.enums.core_function import CoreFunction
 
 
 class AlphabeticalFunctionOptions(BaseModel):
-    keyed_by: str
+    keyed_by: str = ''
 
 
 class AlphabeticalRuleThen(BaseModel):

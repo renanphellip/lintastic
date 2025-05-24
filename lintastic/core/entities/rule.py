@@ -63,6 +63,4 @@ class Rule(BaseModel):
         self.message = transform_data_to_list(self.message)
         self.documentation = transform_data_to_list(self.documentation)
         self.given = transform_data_to_list(self.given)
-        self.given = [
-            quote_unquoted_jsonpaths(jsonpath) for jsonpath in self.given
-        ]
+        self.given = [quote_unquoted_jsonpaths(jsonpath) for jsonpath in self.given]
