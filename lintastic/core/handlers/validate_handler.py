@@ -2,15 +2,17 @@ import os
 
 from lintastic.cli.dto.validate_inputs_dto import ValidateInputsDTO
 from lintastic.core.enums.log_message import LogMessage
+from lintastic.core.factories.result_printer_factory import ResultPrinterFactory
 from lintastic.core.factories.rule_factory import RuleFactory
 from lintastic.core.services.document_resolver_service import DocumentResolverService
+from lintastic.core.services.document_validator_service import DocumentValidatorService
 from lintastic.core.services.function_importer_service import FunctionImporterService
+from lintastic.core.services.function_validator_service import FunctionValidatorService
 from lintastic.core.services.jsonpath_processor_service import JSONPathProcessorService
 from lintastic.core.services.ref_resolver_service import RefResolverService
+from lintastic.core.services.result_printer_service import ResultPrinterService
 from lintastic.core.services.rule_processor_service import RuleProcessorService
 from lintastic.core.services.ruleset_loader_service import RulesetLoaderService
-from lintastic.core.services.document_validator_service import DocumentValidatorService
-from lintastic.core.services.function_validator_service import FunctionValidatorService
 from lintastic.io.readers.file_reader_service import FileReaderService
 from lintastic.io.writers.file_writer_service import FileWriterService
 from lintastic.utils.logger import Logger
@@ -25,13 +27,15 @@ class ValidateHandler:
 
         # Core Functions
         function_importer_service = FunctionImporterService(globals())
-        core_functions = function_importer_service.import_functions('lintastic/core/functions/core')
+        functions_path = 'lintastic/core/functions/core'
+        core_functions = function_importer_service.import_functions(functions_path)
         for function_name, function in core_functions.items():
             globals()[function_name] = function
 
         # Custom Functions
         function_importer_service.globals = globals()
-        custom_functions = function_importer_service.import_functions('lintastic/core/functions/custom')
+        functions_path = 'lintastic/core/functions/custom'
+        custom_functions = function_importer_service.import_functions(functions_path)
         for function_name, function in custom_functions.items():
             globals()[function_name] = function
 
@@ -59,8 +63,13 @@ class ValidateHandler:
         # Document Validation
         rule_processor_service = RuleProcessorService(globals())
         jsonpath_processor_service = JSONPathProcessorService(document_data)
-        document_validator_service = DocumentValidatorService(rules, rule_processor_service, jsonpath_processor_service)
-        diagnostic_collection = document_validator_service.validate(document_data)
+        document_validator_service = DocumentValidatorService(rule_processor_service, jsonpath_processor_service)
+        diagnostic_collection = document_validator_service.validate(rules, inputs.document_path)
+
+        # Terminal output
+        result_printer_factory = ResultPrinterFactory()
+        result_printer_service = ResultPrinterService(inputs.output_format, result_printer_factory)
+        result_printer_service.print(diagnostic_collection)
 
         # Output
         if inputs.results_path:

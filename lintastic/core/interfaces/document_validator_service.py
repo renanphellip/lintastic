@@ -16,5 +16,5 @@ class IDocumentValidatorService(ABC):
         self.jsonpath_processor_service = jsonpath_processor_service
 
     @abstractmethod
-    def validate(self, document_data: Dict[str, Any]) -> DiagnosticCollection:
+    def validate(self, document_data: Dict[str, Any], document_path: str) -> DiagnosticCollection:
         pass

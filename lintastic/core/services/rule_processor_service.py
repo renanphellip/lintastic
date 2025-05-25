@@ -21,10 +21,10 @@ from lintastic.core.entities.functions import (
 from lintastic.core.entities.jsonpath_match import JSONPathMatch
 from lintastic.core.entities.rule import Rule
 from lintastic.core.enums.log_message import LogMessage
+from lintastic.core.interfaces.rule_processor_service import IRuleProcessorService
 from lintastic.core.strategies.inputs_strategy_mapper import (
     InputsStrategyMapper,
 )
-from lintastic.core.interfaces.rule_processor_service import IRuleProcessorService
 from lintastic.utils.logger import Logger
 
 

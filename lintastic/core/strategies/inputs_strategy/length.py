@@ -3,7 +3,7 @@ from lintastic.core.entities.functions import (
     LengthRuleThen,
 )
 from lintastic.core.entities.jsonpath_match import JSONPathMatch
-from lintastic.utils.shared import get_field_name
+from lintastic.core.utils.shared import get_field_name
 
 
 class LengthInputsStrategy:

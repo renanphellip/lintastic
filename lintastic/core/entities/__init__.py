@@ -4,12 +4,12 @@ from .rule import Rule
 from .spectral import SpectralRule, SpectralRuleset, SpectralRuleThen
 
 __all__ = [
-    "Diagnostic",
-    "DiagnosticCollection",
-    "DiagnosticSummary",
-    "JSONPathMatch",
-    "Rule",
-    "SpectralRule",
-    "SpectralRuleset",
-    "SpectralRuleThen",
+    'Diagnostic',
+    'DiagnosticCollection',
+    'DiagnosticSummary',
+    'JSONPathMatch',
+    'Rule',
+    'SpectralRule',
+    'SpectralRuleset',
+    'SpectralRuleThen',
 ]

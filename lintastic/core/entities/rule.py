@@ -3,7 +3,7 @@ from typing import List, Union
 from pydantic import BaseModel
 
 from lintastic.core.enums.severity import Severity
-from lintastic.utils.shared import (
+from lintastic.core.utils.shared import (
     quote_unquoted_jsonpaths,
     transform_data_to_list,
 )

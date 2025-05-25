@@ -4,17 +4,18 @@ from .function_importer_service import FunctionImporterService
 from .function_validator_service import FunctionValidatorService
 from .jsonpath_processor_service import JSONPathProcessorService
 from .ref_resolver_service import RefResolverService
+from .result_printer_service import ResultPrinterService
 from .rule_processor_service import RuleProcessorService
 from .ruleset_loader_service import RulesetLoaderService
 
 __all__ = [
-    "DocumentResolverService",
-    "DocumentValidatorService",
-    "FunctionImporterService",
-    "FunctionValidatorService",
-    "JSONPathProcessorService",
-    "RefResolverService",
-    "RuleProcessorService",
-    "RulesetLoaderService",
-
+    'DocumentResolverService',
+    'DocumentValidatorService',
+    'FunctionImporterService',
+    'FunctionValidatorService',
+    'JSONPathProcessorService',
+    'RefResolverService',
+    'ResultPrinterService',
+    'RuleProcessorService',
+    'RulesetLoaderService',
 ]

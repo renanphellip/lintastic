@@ -15,7 +15,5 @@ class CustomFunctionInputs:
     rule_name: str
     context: str
     target_value: Any
-    options: Optional[
-        Dict[str, Any],
-    ] = None
+    options: Union[Dict[str, Any],] = None
     field: Optional[str] = None

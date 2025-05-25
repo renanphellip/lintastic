@@ -19,7 +19,7 @@ class DocumentValidatorService(IDocumentValidatorService):
     ):
         super().__init__(rule_processor_service, jsonpath_processor_service)
 
-    def validate(self, rules: List[Rule]) -> DiagnosticCollection:
+    def validate(self, rules: List[Rule], document_path: str) -> DiagnosticCollection:
         try:
             diagnostics: List[Diagnostic] = []
             for rule in rules:
@@ -30,4 +30,4 @@ class DocumentValidatorService(IDocumentValidatorService):
             return DiagnosticCollection(diagnostics)
 
         except Exception as error:
-            Logger.error(LogMessage.FAIL_TO_VALIDATE_DOCUMENT.format(document_path=self.document_path, error=escape(str(error))))
+            Logger.error(LogMessage.FAIL_TO_VALIDATE_DOCUMENT.format(document_path=document_path, error=escape(str(error))))

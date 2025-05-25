@@ -3,7 +3,7 @@ from .validate_handler import ValidateHandler
 from .version_handler import VersionHandler
 
 __all__ = [
-    "ResolveHandler",
-    "ValidateHandler",
-    "VersionHandler",
+    'ResolveHandler',
+    'ValidateHandler',
+    'VersionHandler',
 ]

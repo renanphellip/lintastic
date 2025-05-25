@@ -18,7 +18,7 @@ class JSONPathProcessorService(IJSONPathProcessorService):
     def process(self, rule: Rule) -> List[JSONPathMatch]:
         results = []
         for jsonpath in rule.given:
-            results.extend(self._validate_each_jsonpath_given(jsonpath, self.document_data))
+            results.extend(self._validate_each_jsonpath_given(jsonpath))
         return results
 
     def _validate_each_jsonpath_given(self, jsonpath_given: str) -> List[JSONPathMatch]:
