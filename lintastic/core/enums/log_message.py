@@ -35,6 +35,7 @@ class LogMessage(str, Enum):
     RUNNING_FUNCTION = 'Running: {rule_processing_data}'
     FAIL_TO_WRITE_FILE_WITH_INVALID_TYPE = 'Failed to write "{output_path}". ' 'Data must be an instance of "DiagnosticCollection".'
     RESULTS_EXPORTED = 'Results exported to: {results_path}'
+    VALIDATION_COMPLETED = 'Validation completed.'
 
     def __str__(self):
         return self.value

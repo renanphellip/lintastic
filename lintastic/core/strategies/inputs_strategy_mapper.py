@@ -22,22 +22,22 @@ from .inputs_strategy.xor import XORInputsStrategy
 class InputsStrategyMapper:
     def __init__(self):
         self.inputs_strategy_mapping = {
-            CoreFunction.ALPHABETICAL: AlphabeticalInputsStrategy(),
-            CoreFunction.CASING: CasingInputsStrategy(),
-            CoreFunction.DEFINED: DefinedInputsStrategy(),
-            CoreFunction.ENUMERATION: EnumerationInputsStrategy(),
-            CoreFunction.FALSY: FalsyInputsStrategy(),
-            CoreFunction.LENGTH: LengthInputsStrategy(),
-            CoreFunction.PATTERN: PatternInputsStrategy(),
-            CoreFunction.SCHEMA: SchemaInputsStrategy(),
-            CoreFunction.TRUTHY: TruthyInputsStrategy(),
-            CoreFunction.TYPED_ENUM: TypedEnumInputsStrategy(),
-            CoreFunction.UNDEFINED: UndefinedInputsStrategy(),
+            CoreFunction.ALPHABETICAL: AlphabeticalInputsStrategy,
+            CoreFunction.CASING: CasingInputsStrategy,
+            CoreFunction.DEFINED: DefinedInputsStrategy,
+            CoreFunction.ENUMERATION: EnumerationInputsStrategy,
+            CoreFunction.FALSY: FalsyInputsStrategy,
+            CoreFunction.LENGTH: LengthInputsStrategy,
+            CoreFunction.PATTERN: PatternInputsStrategy,
+            CoreFunction.SCHEMA: SchemaInputsStrategy,
+            CoreFunction.TRUTHY: TruthyInputsStrategy,
+            CoreFunction.TYPED_ENUM: TypedEnumInputsStrategy,
+            CoreFunction.UNDEFINED: UndefinedInputsStrategy,
             # ruff: noqa: E501
-            CoreFunction.UNREFERENCED_REUSABLE_OBJECT: UnreferencedReusableObjectInputsStrategy(),
-            CoreFunction.XOR: XORInputsStrategy(),
+            CoreFunction.UNREFERENCED_REUSABLE_OBJECT: UnreferencedReusableObjectInputsStrategy,
+            CoreFunction.XOR: XORInputsStrategy,
         }
 
     def get_strategy(self, function_name: str) -> IInputsStrategy:
         core_function = CoreFunction(str(function_name).lower())
-        return self.inputs_strategy_mapping.get(core_function, CustomInputsStrategy())
+        return self.inputs_strategy_mapping.get(core_function, CustomInputsStrategy)

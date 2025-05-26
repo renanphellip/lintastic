@@ -6,6 +6,7 @@ from lintastic.io.interfaces.file_reader import IFileReader
 
 
 class YamlFileReader(IFileReader):
-    def read(self, file_path: str) -> Dict[str, Any]:
+    @staticmethod
+    def read(file_path: str) -> Dict[str, Any]:
         with open(file_path, 'r', encoding='utf-8') as file:
             return yaml.safe_load(file)

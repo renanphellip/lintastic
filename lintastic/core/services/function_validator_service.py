@@ -2,12 +2,13 @@ from typing import Any, Dict, List
 
 from lintastic.core.entities.rule import Rule
 from lintastic.core.enums.log_message import LogMessage
+from lintastic.core.interfaces.function_validator_service import IFunctionValidatorService
 from lintastic.utils.logger import Logger
 
 
-class FunctionValidatorService:
-    def __init__(self, globals: Dict[str, Any] = globals()):
-        self.globals = globals
+class FunctionValidatorService(IFunctionValidatorService):
+    def __init__(self, globals: Dict[str, Any]):
+        super().__init__(globals)
 
     def validate_functions(self, rules: List[Rule]) -> None:
         missing_functions: List[str] = []

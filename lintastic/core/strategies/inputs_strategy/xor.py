@@ -1,10 +1,11 @@
 from lintastic.core.entities.functions import XORFunctionInputs, XORRuleThen
 from lintastic.core.entities.jsonpath_match import JSONPathMatch
+from lintastic.core.interfaces.inputs_strategy import IInputsStrategy
 
 
-class XORInputsStrategy:
+class XORInputsStrategy(IInputsStrategy):
+    @staticmethod
     def get_inputs(
-        self,
         rule_name: str,
         rule_then: XORRuleThen,
         jsonpath_match: JSONPathMatch,

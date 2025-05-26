@@ -9,7 +9,7 @@ class IResultPrinterService(ABC):
     def __init__(self, output_format: OutputFormat, result_printer_factory: IResultPrinterFactory):
         self.output_format = output_format
         self.result_printer_factory = result_printer_factory
-    
+
     @abstractmethod
     def print(self, diagnostic_collection: DiagnosticCollection) -> None:
         pass

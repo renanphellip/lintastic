@@ -4,5 +4,5 @@ from typing import Any
 
 class IFileWriterService(ABC):
     @abstractmethod
-    def write_file(self, output_path: str, data: Any) -> str:
+    def write_file(output_path: str, data: Any) -> str:
         pass

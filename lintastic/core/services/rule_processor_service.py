@@ -43,8 +43,8 @@ class RuleProcessorService(IRuleProcessorService):
                     diagnostics.append(diagnostic)
         return diagnostics
 
+    @staticmethod
     def _run_function(
-        self,
         rule: Rule,
         rule_then: Union[
             AlphabeticalRuleThen,

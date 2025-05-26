@@ -3,12 +3,13 @@ from lintastic.core.entities.functions import (
     FalsyRuleThen,
 )
 from lintastic.core.entities.jsonpath_match import JSONPathMatch
+from lintastic.core.interfaces.inputs_strategy import IInputsStrategy
 from lintastic.core.utils.shared import get_field_name
 
 
-class FalsyInputsStrategy:
+class FalsyInputsStrategy(IInputsStrategy):
+    @staticmethod
     def get_inputs(
-        self,
         rule_name: str,
         rule_then: FalsyRuleThen,
         jsonpath_match: JSONPathMatch,

@@ -8,7 +8,8 @@ from lintastic.core.interfaces.rule_then_strategy import IRuleThenStrategy
 
 
 class SchemaRuleThenStrategy(IRuleThenStrategy):
-    def set_rule_then(self, spectral_rule_then: SpectralRuleThen, rule_name: str):
+    @staticmethod
+    def set_rule_then(spectral_rule_then: SpectralRuleThen, rule_name: str):
         return SchemaRuleThen(
             field=spectral_rule_then.field,
             function_options=SchemaFunctionOptions(

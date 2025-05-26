@@ -3,11 +3,12 @@ from lintastic.core.entities.functions import (
     UnreferencedReusableObjectRuleThen,
 )
 from lintastic.core.entities.jsonpath_match import JSONPathMatch
+from lintastic.core.interfaces.inputs_strategy import IInputsStrategy
 
 
-class UnreferencedReusableObjectInputsStrategy:
+class UnreferencedReusableObjectInputsStrategy(IInputsStrategy):
+    @staticmethod
     def get_inputs(
-        self,
         rule_name: str,
         rule_then: UnreferencedReusableObjectRuleThen,
         jsonpath_match: JSONPathMatch,

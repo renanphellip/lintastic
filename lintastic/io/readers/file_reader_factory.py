@@ -12,10 +12,10 @@ class FileReaderFactory:
     def get_file_reader(file_path: str) -> IFileReader:
         file_path = file_path.lower()
         if file_path.endswith('.toml'):
-            return TomlFileReader()
+            return TomlFileReader
         elif file_path.endswith('.json'):
-            return JsonFileReader()
+            return JsonFileReader
         elif file_path.endswith(('yaml', 'yml')):
-            return YamlFileReader()
+            return YamlFileReader
         else:
             Logger.error(LogMessage.UNSUPPORTED_FILE_EXTENSION.format(file_path=file_path))

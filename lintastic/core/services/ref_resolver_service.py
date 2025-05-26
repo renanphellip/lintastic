@@ -17,7 +17,8 @@ class RefResolverService(IRefResolverService):
             return self._resolve_list(data, base_path)
         return data
 
-    def _is_external_reference(self, key: str, value: Any) -> bool:
+    @staticmethod
+    def _is_external_reference(key: str, value: Any) -> bool:
         return key == '$ref' and isinstance(value, str) and not value.startswith('#')
 
     def _resolve_external_reference(self, file_name: str, base_path: str) -> Any:

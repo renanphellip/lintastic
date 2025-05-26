@@ -23,7 +23,7 @@ from lintastic.core.entities.spectral import SpectralRuleThen
 class IRuleThenStrategy(ABC):
     @abstractmethod
     def set_rule_then(
-        self, spectral_rule_then: SpectralRuleThen, rule_name: str
+        spectral_rule_then: SpectralRuleThen, rule_name: str
     ) -> Union[
         AlphabeticalRuleThen,
         CasingRuleThen,

@@ -13,12 +13,12 @@ class FileWriterFactory:
     def get_file_writer(output_path: str) -> IFileWriter:
         output_path = output_path.lower()
         if output_path.endswith('.json'):
-            return JsonFileWriter()
+            return JsonFileWriter
         elif output_path.endswith('.md'):
-            return MdFileWriter()
+            return MdFileWriter
         elif output_path.endswith('.txt'):
-            return TxtFileWriter()
+            return TxtFileWriter
         elif output_path.endswith(('yaml', 'yml')):
-            return YamlFileWriter()
+            return YamlFileWriter
         else:
             Logger.error(LogMessage.UNSUPPORTED_FILE_EXTENSION.format(file_path=output_path))

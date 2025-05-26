@@ -3,11 +3,12 @@ from lintastic.core.entities.functions import (
     TypedEnumRuleThen,
 )
 from lintastic.core.entities.jsonpath_match import JSONPathMatch
+from lintastic.core.interfaces.inputs_strategy import IInputsStrategy
 
 
-class TypedEnumInputsStrategy:
+class TypedEnumInputsStrategy(IInputsStrategy):
+    @staticmethod
     def get_inputs(
-        self,
         rule_name: str,
         rule_then: TypedEnumRuleThen,
         jsonpath_match: JSONPathMatch,

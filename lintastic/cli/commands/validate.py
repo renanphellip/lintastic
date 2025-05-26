@@ -49,4 +49,5 @@ def validate(
     )
     inputs_json_string = json.dumps(inputs.__dict__, indent=2)
     Logger.info(LogMessage.INPUTS.format(inputs=inputs_json_string))
-    ValidateHandler.execute(inputs)
+    validate_handler = ValidateHandler()
+    validate_handler.execute(inputs)

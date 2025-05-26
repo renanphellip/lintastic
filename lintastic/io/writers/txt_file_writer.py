@@ -7,7 +7,8 @@ from lintastic.utils.logger import Logger
 
 
 class TxtFileWriter(IFileWriter):
-    def write(self, output_path: str, diagnostic_collection: DiagnosticCollection) -> str:
+    @staticmethod
+    def write(output_path: str, diagnostic_collection: DiagnosticCollection) -> str:
         absolute_output_path = os.path.abspath(output_path.strip())
         if not isinstance(diagnostic_collection, DiagnosticCollection):
             Logger.error(LogMessage.FAIL_TO_WRITE_FILE_WITH_INVALID_TYPE.format(output_path=absolute_output_path))

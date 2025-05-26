@@ -22,22 +22,22 @@ from .rule_then_strategy.xor import XORRuleThenStrategy
 class RuleThenStrategyMapper:
     def __init__(self):
         self.function_strategy_mapping = {
-            CoreFunction.ALPHABETICAL: AlphabeticalRuleThenStrategy(),
-            CoreFunction.CASING: CasingRuleThenStrategy(),
-            CoreFunction.DEFINED: DefinedRuleThenStrategy(),
-            CoreFunction.ENUMERATION: EnumerationRuleThenStrategy(),
-            CoreFunction.FALSY: FalsyRuleThenStrategy(),
-            CoreFunction.LENGTH: LengthRuleThenStrategy(),
-            CoreFunction.PATTERN: PatternRuleThenStrategy(),
-            CoreFunction.SCHEMA: SchemaRuleThenStrategy(),
-            CoreFunction.TRUTHY: TruthyRuleThenStrategy(),
-            CoreFunction.TYPED_ENUM: TypedEnumRuleThenStrategy(),
-            CoreFunction.UNDEFINED: UndefinedRuleThenStrategy(),
+            CoreFunction.ALPHABETICAL: AlphabeticalRuleThenStrategy,
+            CoreFunction.CASING: CasingRuleThenStrategy,
+            CoreFunction.DEFINED: DefinedRuleThenStrategy,
+            CoreFunction.ENUMERATION: EnumerationRuleThenStrategy,
+            CoreFunction.FALSY: FalsyRuleThenStrategy,
+            CoreFunction.LENGTH: LengthRuleThenStrategy,
+            CoreFunction.PATTERN: PatternRuleThenStrategy,
+            CoreFunction.SCHEMA: SchemaRuleThenStrategy,
+            CoreFunction.TRUTHY: TruthyRuleThenStrategy,
+            CoreFunction.TYPED_ENUM: TypedEnumRuleThenStrategy,
+            CoreFunction.UNDEFINED: UndefinedRuleThenStrategy,
             # ruff: noqa: E501
-            CoreFunction.UNREFERENCED_REUSABLE_OBJECT: UnreferencedReusableObjectRuleThenStrategy(),
-            CoreFunction.XOR: XORRuleThenStrategy(),
+            CoreFunction.UNREFERENCED_REUSABLE_OBJECT: UnreferencedReusableObjectRuleThenStrategy,
+            CoreFunction.XOR: XORRuleThenStrategy,
         }
 
     def get_strategy(self, function_name: str) -> IRuleThenStrategy:
         core_function = CoreFunction(str(function_name).lower())
-        return self.function_strategy_mapping.get(core_function, CustomRuleThenStrategy())
+        return self.function_strategy_mapping.get(core_function, CustomRuleThenStrategy)

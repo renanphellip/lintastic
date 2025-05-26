@@ -3,11 +3,12 @@ from lintastic.core.entities.functions import (
     CasingRuleThen,
 )
 from lintastic.core.entities.jsonpath_match import JSONPathMatch
+from lintastic.core.interfaces.inputs_strategy import IInputsStrategy
 
 
-class CasingInputsStrategy:
+class CasingInputsStrategy(IInputsStrategy):
+    @staticmethod
     def get_inputs(
-        self,
         rule_name: str,
         rule_then: CasingRuleThen,
         jsonpath_match: JSONPathMatch,

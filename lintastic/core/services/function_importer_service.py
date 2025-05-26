@@ -6,15 +6,16 @@ from types import ModuleType
 from typing import Any, Dict, List
 
 from lintastic.core.enums.log_message import LogMessage
+from lintastic.core.interfaces.function_importer_service import IFunctionImporterService
 from lintastic.utils.logger import Logger
 
 
-class FunctionImporterService:
+class FunctionImporterService(IFunctionImporterService):
     def __init__(
         self,
-        globals: Dict[str, Any] = globals(),
+        globals: Dict[str, Any],
     ):
-        self.globals = globals
+        super().__init__(globals)
 
     def import_functions(self, functions_path: str) -> Dict[str, Any]:
         functions_init_path = self._get_functions_init_path(functions_path)

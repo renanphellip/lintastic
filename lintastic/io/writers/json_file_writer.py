@@ -8,7 +8,8 @@ from lintastic.io.interfaces.file_writer import IFileWriter
 
 
 class JsonFileWriter(IFileWriter):
-    def write(self, output_path: str, data: Any) -> str:
+    @staticmethod
+    def write(output_path: str, data: Any) -> str:
         absolute_output_path = os.path.abspath(output_path.strip())
         with open(absolute_output_path, 'w', encoding='utf-8') as file:
             if isinstance(data, DiagnosticCollection):

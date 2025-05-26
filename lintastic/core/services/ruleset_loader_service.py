@@ -7,14 +7,14 @@ from lintastic.core.entities.rule import Rule
 from lintastic.core.entities.spectral import SpectralRuleset
 from lintastic.core.enums.log_message import LogMessage
 from lintastic.core.interfaces.rule_factory import IRuleFactory
+from lintastic.core.interfaces.ruleset_loader_service import IRulesetLoaderService
 from lintastic.io.interfaces.file_reader_service import IFileReaderService
 from lintastic.utils.logger import Logger
 
 
-class RulesetLoaderService:
+class RulesetLoaderService(IRulesetLoaderService):
     def __init__(self, file_reader_service: IFileReaderService, rule_factory: IRuleFactory):
-        self.file_reader_service = file_reader_service
-        self.rule_factory = rule_factory
+        super().__init__(file_reader_service, rule_factory)
 
     def get_rules(self) -> List[Rule]:
         rules = []

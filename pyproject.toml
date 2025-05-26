@@ -21,7 +21,6 @@ line-length = 200
 [tool.ruff.lint]
 preview = true
 select = ['I', 'F', 'E', 'W', 'PL', 'PT']
-ignore = ['E722', 'PLR0913', 'PLR0917']
 
 [tool.ruff.format]
 preview = true

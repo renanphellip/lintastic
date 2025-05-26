@@ -1,9 +1,8 @@
-
-from lintastic.utils.logger import Logger
 from lintastic.core.entities.diagnostic import DiagnosticCollection
 from lintastic.core.enums.output_format import OutputFormat
 from lintastic.core.interfaces.result_printer_factory import IResultPrinterFactory
 from lintastic.core.interfaces.result_printer_service import IResultPrinterService
+from lintastic.utils.logger import Logger
 
 
 class ResultPrinterService(IResultPrinterService):
